@@ -3,7 +3,9 @@ import numpy as np
 import itertools
 import sys
 
+
 def findKeyPoints(img, template, distance=200):
+    # Generate feature detection and description objects
     detector = cv2.FeatureDetector_create("SIFT")
     descriptor = cv2.DescriptorExtractor_create("SIFT")
 
@@ -18,7 +20,7 @@ def findKeyPoints(img, template, distance=200):
     idx, dist = flann.knnSearch(td, 1, params={})
     del flann
 
-    dist = dist[:,0]/2500.0
+    dist = dist[:, 0]/2500.0
     dist = dist.reshape(-1,).tolist()
     idx = idx.reshape(-1).tolist()
     indices = range(len(dist))
@@ -34,7 +36,7 @@ def findKeyPoints(img, template, distance=200):
     idx, dist = flann.knnSearch(sd, 1, params={})
     del flann
 
-    dist = dist[:,0]/2500.0
+    dist = dist[:, 0]/2500.0
     dist = dist.reshape(-1,).tolist()
     idx = idx.reshape(-1).tolist()
     indices = range(len(dist))
@@ -47,6 +49,7 @@ def findKeyPoints(img, template, distance=200):
             tkp_final.append(tkp[i])
 
     return skp_final, tkp_final
+
 
 def drawKeyPoints(img, template, skp, tkp, num=-1):
     h1, w1 = img.shape[:2]
@@ -69,18 +72,27 @@ def drawKeyPoints(img, template, skp, tkp, num=-1):
 
 
 def match():
-    #img = cv2.imread(sys.argv[1])
-    #temp = cv2.imread(sys.argv[2])
-    img = cv2.imread('../data/m7/IMG_0290.JPG',cv2.CV_LOAD_IMAGE_COLOR)
-    temp = cv2.imread('../data/m7/IMG_0292.JPG',cv2.CV_LOAD_IMAGE_COLOR)
+    # img = cv2.imread(sys.argv[1])
+    # temp = cv2.imread(sys.argv[2])
+
+    # Load data images in coloe
+    img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
+    temp = cv2.imread('../data/m7/IMG_0292.JPG', cv2.CV_LOAD_IMAGE_COLOR)
+
+    # Look for a 'dist' parameter in arguments- if not, default to 200
+    # (not sure what dist is actually doing)
     try:
         dist = int(sys.argv[3])
     except IndexError:
         dist = 200
+
+    # Check 'num' command line parameter
     try:
         num = int(sys.argv[4])
     except IndexError:
         num = -1
+
+
     skp, tkp = findKeyPoints(img, temp, dist)
     newimg = drawKeyPoints(img, temp, skp, tkp, num)
     cv2.imshow("image", newimg)
@@ -88,4 +100,3 @@ def match():
 
 if __name__ == "__main__":
     match()
-
