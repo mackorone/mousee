@@ -36,11 +36,11 @@ draw_params = dict(matchColor = (0,255,0),
 
 
 # create BFMatcher object
-bf = cv2.BFMatcher(cv2.NORM_HAMMING)#, crossCheck=True)
-matches = bf.knnMatch(des1, trainDescriptors = des2, k = 2)
-p1, p2, kp_pairs = filter_matches(kp1, kp2, matches)
-explore_match('find_obj', img1,img2,kp_pairs)#cv2 shows image
+# bf = cv2.BFMatcher(cv2.NORM_HAMMING)#, crossCheck=True)
+# matches = bf.knnMatch(des1, trainDescriptors = des2, k = 2)
+# p1, p2, kp_pairs = filter_matches(kp1, kp2, matches)
+# explore_match('find_obj', img1,img2,kp_pairs)#cv2 shows image
 
-#img3 = cv2.drawMatchesKnn(img1,kp1,img2,kp2,matches,None,**draw_params)
+img3 = cv2.drawMatchesKnn(img1,kp1,img2,kp2,matches,None,**draw_params)
 #img3 = cv2.drawMatches(img1,kp1,img2,kp2,matches,None,**draw_params)
-#plt.imshow(img3,),plt.show()
+plt.imshow(img3,),plt.show()
