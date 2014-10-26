@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-# Get the image and convert to HSV
-img = cv2.imread('../data/m7/IMG_0290.JPG',cv2.CV_LOAD_IMAGE_COLOR)
+# Get the image
+img = cv2.imread('../data/m7/IMG_0289.JPG',cv2.CV_LOAD_IMAGE_COLOR)
 
 # Create the red mask
 lower_red = np.array([0,10,155])
@@ -45,28 +45,9 @@ while True:
 # Now remove the noise from the skeleton
 contours, hier = cv2.findContours(skel.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 for c in contours:
-    if cv2.contourArea(c) < 10:
+    if cv2.contourArea(c) < 1:
         (x,y,w,h) = cv2.boundingRect(c)
         cv2.rectangle(skel,(x,y),(x+w,y+h),0,-1)
 
-cv2.imshow("f", skel)
+cv2.imshow("Image", skel)
 cv2.waitKey()
-
-# Opening filter...
-
-# b_k_s = 5 # blurring_kernel_size
-# kernel = np.ones((b_k_s, b_k_s), np.float32)/b_k_s**2
-# blurred = cv2.filter2D(dark_filtered,-1,kernel)
-# cv2.imshow('frame',blurred)
-# cv2.waitKey()
-
-# Image after red filter
-# red = img.copy()
-# red[:,:,0] = 0
-# red[:,:,1] = 0
-# red[:,:,2] = 255
-# only_red = cv2.bitwise_and(red, red, mask = red_mask)
-# #cv2.imshow('frame', red)
-# cv2.imshow('frame', only_red)
-# cv2.waitKey()
-
