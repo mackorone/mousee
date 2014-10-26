@@ -85,6 +85,7 @@ def match():
     newimg = drawKeyPoints(img, temp, skp, tkp, num)
     cv2.imshow("image", newimg)
     cv2.waitKey(0)
-    
-match()
+
+if __name__ == "__main__":
+    match()
 
