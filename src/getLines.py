@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Get the image
-img = cv2.imread('../data/m7/IMG_0289.JPG',cv2.CV_LOAD_IMAGE_COLOR)
+img = cv2.imread('STITCHED.JPG',cv2.CV_LOAD_IMAGE_COLOR)
 
 # Create the red mask
 lower_red = np.array([0,10,155])
@@ -49,5 +49,6 @@ for c in contours:
         (x,y,w,h) = cv2.boundingRect(c)
         cv2.rectangle(skel,(x,y),(x+w,y+h),0,-1)
 
-cv2.imshow("Image", skel)
-cv2.waitKey()
+#cv2.imshow("Image", skel)
+#cv2.waitKey()
+cv2.imwrite('GET_LINES_OUT.png',skel)
