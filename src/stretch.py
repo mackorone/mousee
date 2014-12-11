@@ -24,7 +24,7 @@ big_theta = math.atan(view_distance/camera_height) # Angle between the vertical 
 lil_theta = math.atan(unseen_length/camera_height) # Angle between the vertical and line connecting the camera to the rightmost point
                   
 # Input image
-img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
+img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR) # TODO: Modularize this
 img_num_rows = np.shape(img)[0]
 img_num_cols = np.shape(img)[1]
 
@@ -45,6 +45,7 @@ def getStretchFactor(row):
     else:
         return three / getStretchFactor(0)
 
+# This will look good in our report
 '''
 xs = np.arange(1, 720)
 ys = [getPhysicalPosition(x) for x in xs]
@@ -55,16 +56,18 @@ pl.show()
 exit(0)
 '''
 
-# Increase the row resolution so things are less choppy. Then subsample to resize
-# the resultant image back to its original size
-resolution = 3
+# Get the output for every image in the data directory
+import os
+for string in os.listdir('../data/m7')[1:]:
 
-output = []
-for i in range(img_num_rows):
-    for j in range(int(resolution*getStretchFactor(img_num_rows-i))):
-        output.append(img[i,:,:])
-output = np.array(output)
+    img = cv2.imread('../data/m7/' + string, cv2.CV_LOAD_IMAGE_COLOR)
 
-#cv2.imshow("Image", large)
-#cv2.waitKey()
-cv2.imwrite('img.jpg', cv2.resize(output, (img_num_cols, img_num_rows)))
+    # Interpolate to a large image, perform the discretization, and subsample
+    output = []
+    for i in range(img_num_rows):
+        for j in range(int(3*getStretchFactor(img_num_rows-i))):
+            output.append(img[i,:,:])
+    output = np.array(output)
+
+    # Write the output image
+    cv2.imwrite('out/' + string + '.jpg', cv2.resize(output, (img_num_cols, img_num_rows)))
