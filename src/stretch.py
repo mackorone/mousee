@@ -45,41 +45,14 @@ def getStretchFactor(row):
     else:
         return three / getStretchFactor(0)
 
-
-def quantize(val, r):
-    # Quantize a list to the nearest increment r
-    return np.around(np.float(val)/r)*r
-
-inc = 0.1   # The interval used to quantize the stretch factor values
-
 # This will look good in our report
+'''
 xs = np.arange(1, img_num_rows)
 ys = [getPhysicalPosition(x) for x in xs]
 sf = [getStretchFactor(x) for x in xs]
 pl.plot(xs, ys, 'b')
 pl.plot(xs, sf, 'r')
 pl.show()
-
-#sfq = [quantize(x, inc) for x in sf]     # The quantized stretch factor values
-# Plot the stretch factors alongside the quantized stretch factors
-#pl.plot(xs, sf, 'r-', xs, sfq, 'b-', linewidth=2)
-#pl.show()
-# exit(0)
-
-'''
-# Assuming that we round each stretch factor to the nearest 0.1: obtain a list of integer values representing the exact
-# number of rows in the interpolated image that each row of the original image occupies.
-#   Ex: If sfq = 1.1, a row from the original image occupies 11 rows in the interpolated image
-sfq_int = [int(10*x) for x in sfq]
-
-# Get the total number of rows that the interpolated image needs to have
-interp_rows = np.sum(sfq_int)
-print "Row count of interpolated image: ", interp_rows
-
-# Interpolation
-# large = cv2.resize(img, (np.shape(img)[1]*sf, np.shape(img)[0]*sf))
-# print np.shape(img)
-# print np.shape(large)
 '''
 
 # Get the output for every image in the data directory
@@ -87,6 +60,7 @@ import os
 for string in os.listdir('../data/m7')[1:]:
 
     img = cv2.imread('../data/m7/' + string, cv2.CV_LOAD_IMAGE_COLOR)
+    print string
 
     # Interpolate to a large image, perform the discretization, and subsample
     output = []
@@ -96,4 +70,4 @@ for string in os.listdir('../data/m7')[1:]:
     output = np.array(output)
 
     # Write the output image
-    cv2.imwrite('out/' + string + '.jpg', cv2.resize(output, (img_num_cols, img_num_rows)))
+    cv2.imwrite('out/' + string, cv2.resize(output, (img_num_cols, img_num_rows)))
