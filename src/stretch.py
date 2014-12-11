@@ -45,6 +45,7 @@ def getStretchFactor(row):
     else:
         return three / getStretchFactor(0)
 
+'''
 xs = np.arange(1, 720)
 ys = [getPhysicalPosition(x) for x in xs]
 sf = [getStretchFactor(x) for x in xs]
@@ -52,21 +53,13 @@ pl.plot(xs, ys, 'b')
 pl.plot(xs, sf, 'r')
 pl.show()
 exit(0)
-
-# TODO: should each row have its own scale value???
-stretch_factor = 5
-
-# Input image
-img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
-
-print scale_values
-exit(0)
+'''
 
 # Interpolation
-large = cv2.resize(img, (np.shape(img)[1]*stretch_factor, np.shape(img)[0]*stretch_factor))
+#large = cv2.resize(img, (np.shape(img)[1]*stretch_factor, np.shape(img)[0]*stretch_factor))
+#print np.shape(img)
+#print np.shape(large)
 
-print np.shape(img)
-print np.shape(large)
 #cv2.imshow("Image", large)
 #cv2.waitKey()
 #cv2.imwrite('img.jpg', large)
