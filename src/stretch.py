@@ -55,11 +55,16 @@ pl.show()
 exit(0)
 '''
 
-# Interpolation
-#large = cv2.resize(img, (np.shape(img)[1]*stretch_factor, np.shape(img)[0]*stretch_factor))
-#print np.shape(img)
-#print np.shape(large)
+# Increase the row resolution so things are less choppy. Then subsample to resize
+# the resultant image back to its original size
+resolution = 3
+
+output = []
+for i in range(img_num_rows):
+    for j in range(int(resolution*getStretchFactor(img_num_rows-i))):
+        output.append(img[i,:,:])
+output = np.array(output)
 
 #cv2.imshow("Image", large)
 #cv2.waitKey()
-#cv2.imwrite('img.jpg', large)
+cv2.imwrite('img.jpg', cv2.resize(output, (img_num_cols, img_num_rows)))
