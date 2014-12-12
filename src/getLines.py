@@ -51,7 +51,4 @@ def getLines(img_path):
             (x,y,w,h) = cv2.boundingRect(c)
             cv2.rectangle(skel,(x,y),(x+w,y+h),0,-1)
 
-    #cv2.imshow("Image", skel)
-    #cv2.waitKey()
-    #cv2.imwrite('GET_LINES_OUT.png',skel)
     return skel
