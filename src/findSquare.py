@@ -20,7 +20,7 @@ def draw_lines_on_img(lines, img, color):
         cv2.line(img,(x1,y1),(x2,y2), color,2)
 
 # Specify the image path
-image_path = '../data/m7/IMG_0294.JPG'
+image_path = '../data/m7/IMG_0289.JPG'
 
 # Input image (should be the skeletonized image)
 img = getLines(image_path)
@@ -32,11 +32,12 @@ color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
 
 # This code was taken from [http://opencv-python-tutroals.readthedocs.org/
 # en/latest/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html]
-lines = [(rho, theta) for rho, theta in cv2.HoughLines(img, 1, np.pi/180, 60)[0]]
+lines = [(rho, theta) if rho >= 0 else (-rho, theta - np.pi)
+        for rho, theta in cv2.HoughLines(img, 1, np.pi/180, 60)[0]]
 
 # Fraction deviation that is tolerated
-rho_tolerance = 50 # pixel distance
-theta_tolerance = np.pi / 4.0 # radians # TODO
+rho_tolerance = 30 # pixel distance
+theta_tolerance = np.pi / 25.0 # radians
 
 # Create the groups of lines
 groups = []
@@ -51,12 +52,15 @@ def putLineInGroup(line):
 for line in lines:
     putLineInGroup(line)
 
-# Show each of the groupings
-for g in groups:
+# Show each of the groupings, sorted by theta
+'''
+for g in sorted(groups, key = lambda x: x[0][1]):
+    print g
     copy = color_img.copy()
     draw_lines_on_img(g, copy, (0, 0, 255))
     cv2.imshow('houghlines.jpg', copy)
     cv2.waitKey()
+'''
 
 '''
 def reject_outliers(data, m=2):
@@ -81,3 +85,4 @@ for g in groups:
 draw_lines_on_img(ave_lines, color_img, (0, 255, 0))
 cv2.imshow('houghlines.jpg',color_img)
 cv2.waitKey()
+#cv2.imwrite('houghlines.jpg',color_img)
