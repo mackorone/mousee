@@ -1,55 +1,57 @@
 import cv2
 import numpy as np
 
-# Get the image
-#img = cv2.imread('STITCHED.JPG',cv2.CV_LOAD_IMAGE_COLOR)
-img = cv2.imread('img.jpg',cv2.CV_LOAD_IMAGE_COLOR)
+def getLines(img_path):
 
-# Create the red mask
-lower_red = np.array([0,10,155])
-upper_red = np.array([10,255,255])
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-red_mask = cv2.inRange(hsv, lower_red, upper_red)
+    # Get the image
+    img = cv2.imread(img_path, cv2.CV_LOAD_IMAGE_COLOR)
 
-# Dilate the red mask
-d_k_s = 5 # dilation_kernel_size
-dilation_kernel = np.ones((d_k_s, d_k_s), np.float32)/d_k_s**2
-dilated = cv2.dilate(red_mask, dilation_kernel, iterations = 3)
+    # Create the red mask
+    lower_red = np.array([0,10,155])
+    upper_red = np.array([10,255,255])
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    red_mask = cv2.inRange(hsv, lower_red, upper_red)
 
-# Filter the image using the dilated red mask
-red_filtered = cv2.bitwise_and(img, img, mask = dilated)
+    # Dilate the red mask
+    d_k_s = 5 # dilation_kernel_size
+    dilation_kernel = np.ones((d_k_s, d_k_s), np.float32)/d_k_s**2
+    dilated = cv2.dilate(red_mask, dilation_kernel, iterations = 3)
 
-# Convert to binary and remove any small contours
-gray = cv2.cvtColor(red_filtered, cv2.COLOR_BGR2GRAY)
-ret, binary = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
-contours, hier = cv2.findContours(gray, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-for c in contours:
-    if cv2.contourArea(c) < 500:
-        (x,y,w,h) = cv2.boundingRect(c)
-        cv2.rectangle(binary,(x,y),(x+w,y+h),0,-1)
+    # Filter the image using the dilated red mask
+    red_filtered = cv2.bitwise_and(img, img, mask = dilated)
 
-# Skeletonize
-size = np.size(binary)
-skel = np.zeros(binary.shape,np.uint8)
-ret, im = cv2.threshold(binary, 127, 255, 0)
-element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
-while True:
-    eroded = cv2.erode(im,element)
-    temp = cv2.dilate(eroded,element)
-    temp = cv2.subtract(im,temp)
-    skel = cv2.bitwise_or(skel,temp)
-    im = eroded.copy()
-    zeros = size - cv2.countNonZero(im)
-    if zeros == size:
-        break
+    # Convert to binary and remove any small contours
+    gray = cv2.cvtColor(red_filtered, cv2.COLOR_BGR2GRAY)
+    ret, binary = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
+    contours, hier = cv2.findContours(gray, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    for c in contours:
+        if cv2.contourArea(c) < 500:
+            (x,y,w,h) = cv2.boundingRect(c)
+            cv2.rectangle(binary,(x,y),(x+w,y+h),0,-1)
 
-# Now remove the noise from the skeleton
-contours, hier = cv2.findContours(skel.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-for c in contours:
-    if cv2.contourArea(c) < 1:
-        (x,y,w,h) = cv2.boundingRect(c)
-        cv2.rectangle(skel,(x,y),(x+w,y+h),0,-1)
+    # Skeletonize
+    size = np.size(binary)
+    skel = np.zeros(binary.shape,np.uint8)
+    ret, im = cv2.threshold(binary, 127, 255, 0)
+    element = cv2.getStructuringElement(cv2.MORPH_CROSS, (3, 3))
+    while True:
+        eroded = cv2.erode(im,element)
+        temp = cv2.dilate(eroded,element)
+        temp = cv2.subtract(im,temp)
+        skel = cv2.bitwise_or(skel,temp)
+        im = eroded.copy()
+        zeros = size - cv2.countNonZero(im)
+        if zeros == size:
+            break
 
-#cv2.imshow("Image", skel)
-#cv2.waitKey()
-cv2.imwrite('GET_LINES_OUT.png',skel)
+    # Now remove the noise from the skeleton
+    contours, hier = cv2.findContours(skel.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    for c in contours:
+        if cv2.contourArea(c) < 1:
+            (x,y,w,h) = cv2.boundingRect(c)
+            cv2.rectangle(skel,(x,y),(x+w,y+h),0,-1)
+
+    #cv2.imshow("Image", skel)
+    #cv2.waitKey()
+    #cv2.imwrite('GET_LINES_OUT.png',skel)
+    return skel
