@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def getLines(img_path):
+def skeletonize(img_path):
 
     # Get the image
     img = cv2.imread(img_path, cv2.CV_LOAD_IMAGE_COLOR)

@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pylab as plt
 
 # Load one of the test images
-img = cv2.imread('../data/m7/IMG_0290.jpg', cv2.CV_LOAD_IMAGE_COLOR)
+img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
 
 # Coordinates of the square from the perspective image
 topleft = [416, 207]
@@ -20,13 +20,5 @@ sbottomleft = [200, 800]
 dst = np.array([stopleft, stopright, sbottomright, sbottomleft], np.float32)
 
 transform = cv2.getPerspectiveTransform(src, dst)
-print transform
-print img.shape
-
-# ortho = np.zeros(img.shape)
-
 ortho = cv2.warpPerspective(img, transform, (720, 960))
-
-cv2.imshow('img', img)
-cv2.imshow('ortho', ortho)
-cv2.waitKey()
+cv2.imwrite('ortho.jpg', ortho)
