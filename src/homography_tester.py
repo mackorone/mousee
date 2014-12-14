@@ -21,4 +21,5 @@ dst = np.array([stopleft, stopright, sbottomright, sbottomleft], np.float32)
 
 transform = cv2.getPerspectiveTransform(src, dst)
 ortho = cv2.warpPerspective(img, transform, (720, 960))
-cv2.imwrite('ortho.jpg', ortho)
+cv2.imshow('ortho', ortho)
+# cv2.imwrite('ortho.jpg', ortho)

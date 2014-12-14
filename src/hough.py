@@ -22,7 +22,7 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
         #    | \ theta
         #    |  \
         #    |   \
-        #    |    \
+        #    V    \
         #
         # And the "quadrants" can be labeled as follows:
         #
@@ -100,13 +100,13 @@ def draw_x1y1_x2y2_lines(lines, img, color):
     return new_img
 
 # Gets the rho-theta hough lines for a maze image
-def hough_lines(image_path):
+def hough_lines(img):
 
     # Get the color image (for display purposes)
-    color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
+    # color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
 
     # Skeletonize the input image
-    skel = skeletonize(image_path)
+    skel = skeletonize(img)
 
     # Use a Hough Tranform to extra all lines in rho-theta form
     lines = [(rho, theta) if rho >= 0 else (-rho, theta - np.pi)
