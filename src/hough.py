@@ -22,7 +22,7 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
         #    | \ theta
         #    |  \
         #    |   \
-        #    |    \
+        #    V    \
         #
         # And the "quadrants" can be labeled as follows:
         #
