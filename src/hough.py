@@ -92,6 +92,13 @@ def draw_rho_theta_lines(lines, img, color):
         cv2.line(new_img, (x1,y1), (x2,y2), color, 2)
     return new_img
 
+# Draws ((x1,y1),(x2,y2)) lines on an image, where color is (b, g, r)
+def draw_x1y1_x2y2_lines(lines, img, color):
+    new_img = img.copy()
+    for ((x1,y1),(x2,y2)) in lines:
+        cv2.line(new_img, (x1,y1), (x2,y2), color, 2)
+    return new_img
+
 # Gets the rho-theta hough lines for a maze image
 def hough_lines(image_path):
 
@@ -104,6 +111,11 @@ def hough_lines(image_path):
     # Use a Hough Tranform to extra all lines in rho-theta form
     lines = [(rho, theta) if rho >= 0 else (-rho, theta - np.pi)
             for rho, theta in cv2.HoughLines(skel, 1, np.pi/180, 65)[0]]
+    # TODO: lines on opposite sides of the origin are no good...
+    # The quoted out portions are my attempt to fix those lines
+    '''
+    lines = [(rho, theta) if theta >= 0 else (-rho, theta - np.pi)
+    '''
 
     # Grouping tolerance for each of the parameters
     rho_tolerance = 30 # pixel distance
@@ -113,6 +125,13 @@ def hough_lines(image_path):
     line_groups = []
     def putLineInGroup(line):
         for group in line_groups:
+            '''
+            good_rho = abs(abs(line[0]) - abs(np.mean([x[0] for x in group]))) <= rho_tolerance
+            theta_dist = min((line[1] - np.mean([x[1] for x in group])) % np.pi,
+                             (np.mean([x[1] for x in group]) - line[1]) % np.pi)
+            print theta_dist
+            good_theta = theta_dist <= theta_tolerance
+            '''
             good_rho = abs(line[0] - np.mean([x[0] for x in group])) <= rho_tolerance
             good_theta = abs(line[1] - np.mean([x[1] for x in group])) <= theta_tolerance
             if good_rho and good_theta:
