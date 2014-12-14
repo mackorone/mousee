@@ -54,29 +54,37 @@ def extract_walls(img):
         red_mask = cv2.inRange(window, lower_red, upper_red)
         return sum(sum(red_mask)) > 500
 
-    # The tiles are numbered as follows:
-    # |  0  1  2  3 |
-    # |  4  5  6  7 |
-    # |  8  9 10 11 |
-    # | 12 13 14 15 |
-    # | 16 17 18 19 |
-    # | 20 21 22 23 |
-    walls = [[0,0,0,0] for i in range(maze_width*maze_height)]
+    # 2D array of the wall values
+    walls = [[[0,0,0,0] for i in range(maze_width)] for j in range(maze_height)]
 
     # Check all pairs of points along the horizonal
-    for i in range(len(rows)):
-        for j in range(len(rows[i])-1):
+    for i in range(len(rows)): # TODO: The indices can be changed
+        for j in range(len(rows[i])-1): # TODO: The indices can be changed
             if horizontal_wall_exists(img, rows[i][j], rows[i][j+1]):
-                # TODO: Add to walls
-                # walls[
+                # TODO: Delete this
+                '''
                 center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
+                cv2.circle(img, center, 8, (0, 0, 255), -1)
+                '''
+                pass
+                # TODO: Add to walls
 
     # Check all pairs of points along the vertical
-    for i in range(len(rows[0])):
-        for j in range(len(rows)-1):
+    for i in range(len(rows[0])): # TODO: The indices can be changed
+        for j in range(len(rows)-1): # TODO: The indices can be changed
             if vertical_wall_exists(img, rows[j][i], rows[j+1][i]):
-                # TODO: Add to walls
+                # TODO: Delete this
+                '''
                 center = ((rows[j][i][0] + rows[j+1][i][0])/2, (rows[j][i][1] + rows[j+1][i][1])/2)
+                cv2.circle(img, center, 8, (0, 0, 255), -1)
+                '''
+                pass
+                # TODO: Add to walls
+    # TODO: Delete this
+    '''
+    cv2.imshow('Walls', img)
+    cv2.waitKey()
+    '''
 
     return walls
 
@@ -96,7 +104,8 @@ if __name__ == '__main__':
 
     # Draw the walls
     walls = extract_walls(img)
+    #center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
     print walls
 
-    cv2.imshow('Walls', img)
+    cv2.imshow('Walls', draw_img)
     cv2.waitKey()

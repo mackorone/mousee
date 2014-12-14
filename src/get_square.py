@@ -2,6 +2,12 @@ import cv2
 import numpy as np
 from hough import *
 
+# Simple Euclidean distance
+def distance(p1, p2):
+    x1, y1 = p1
+    x2, y2 = p2
+    return np.sqrt((x1-x2)**2 + (y1-y2)**2)
+
 # The code for this function was taken from:
 # http://stackoverflow.com/questions/20677795/find-the-point-of-intersecting-lines
 def line_intersection(line1, line2):
@@ -24,9 +30,9 @@ def intersection_within_image(line1, line2, img_shape):
     num_cols = img_shape[1]
     point = line_intersection(line1, line2)
     # What about parallel lines???
-    if not (0 <= point[0] and point[0] <= num_cols):
+    if not (0 <= point[0] <= num_cols):
         return False
-    if not (0 <= point[1] and point[1] <= num_rows):
+    if not (0 <= point[1] <= num_rows):
         return False
     return True
 
@@ -89,10 +95,6 @@ def get_square(img):
                         polys.append((p1, p2, p3, p4))
 
     # Get the "smallest" polygon, since this is likely to be a square
-    def distance(p1, p2):
-        x1, y1 = p1
-        x2, y2 = p2
-        return np.sqrt((x1-x2)**2 + (y1-y2)**2)
     dists = [distance(p1, p2)**2 + distance(p3, p4)**2 for p1,p2,p3,p4 in polys]
     p1,p2,p3,p4 = polys[dists.index(min(dists))]
 

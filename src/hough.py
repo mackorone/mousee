@@ -72,11 +72,11 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
 
         # Sanity check
         for a in [x1, x2]:
-            if not (0 <= a and a <= num_cols):
+            if not (0 <= a <= num_cols):
                 print 'ERROR - x value of segment out of range'
                 exit(0)
         for b in [y1, y2]:
-            if not (0 <= b and b <= num_rows):
+            if not (0 <= b <= num_rows):
                 print 'ERROR - y value of segment out of range'
                 exit(0)
 
@@ -158,7 +158,7 @@ def hough_lines(img):
 
 # Demo
 if __name__ == '__main__':
-    image_path = '../data/m7/IMG_0290.JPG'
+    image_path = '../data/m7/IMG_0296.JPG'
     color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
     lines = hough_lines(color_img)
     color_img = draw_rho_theta_lines(lines, color_img, (0,255,0))

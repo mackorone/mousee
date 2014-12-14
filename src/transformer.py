@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from hough import *  # Might not need to import this directly here
 from get_square import *
 
 if __name__ == "__main__":
@@ -10,25 +9,21 @@ if __name__ == "__main__":
     cv_or_mpl = 'mpl'    # Use openCV or matplotlib to render the results?
 
     for image_number in range(89, 96):
+
         # Load the test image
         path = '../data/m7/IMG_02' + str(image_number) + '.JPG'
         # path = '../data/m7/IMG_0291.JPG'
         img = cv2.imread(path, cv2.CV_LOAD_IMAGE_COLOR)
 
-        corners = get_square(img) # This should be an image
-        print 'here'
-        exit(0)
-        print corners
+        # Do a clockwise sort on the points
+        def cw_sort(points):
+            center = (np.mean([z[0] for z in points]), np.mean([z[1] for z in points]))
+            cv2.circle(img, (int(center[0]), int(center[1])), 10, (255, 255, 255), -1)
+            xy_and_theta = [(p,np.arctan2(p[1]-center[1], p[0]-center[0])) for p in points]
+            return [z[0] for z in sorted(xy_and_theta, key = lambda x: x[1])]
 
-        corners = sorted(corners)
-        print corners
-
-        '''
-        Note: the corner order is top left, bottom left, top right, bottom right
-        '''
-        # Define some colors to use when we draw vertices
-        blue = (255, 0, 0)
-        green = (0, 255, 0)
+        # Clockwise sort the corners
+        corners = cw_sort(get_square(img))
 
         ortho_side = 2500    # Side length of square rectified image 
         ortho_dim = tuple([ortho_side]*2)  # Get explicit dimensions as tuple
@@ -36,13 +31,14 @@ if __name__ == "__main__":
 
         # Construct the pixel locations of the square in the middle of the
         # transformed image
-        central_square = [(ortho_side/2 - sq_side/2, ortho_side/2 - sq_side/2), 
-                          (ortho_side/2 - sq_side/2, ortho_side/2 + sq_side/2),
-                          (ortho_side/2 + sq_side/2, ortho_side/2 - sq_side/2), 
-                          (ortho_side/2 + sq_side/2, ortho_side/2 + sq_side/2)]
+        central_square = [
+                          (ortho_side/2 - sq_side/2, ortho_side/2 - sq_side/2),
+                          (ortho_side/2 + sq_side/2, ortho_side/2 - sq_side/2),
+                          (ortho_side/2 + sq_side/2, ortho_side/2 + sq_side/2),
+                          (ortho_side/2 - sq_side/2, ortho_side/2 + sq_side/2)
+                         ]
 
-        # Numpy-ize the lists of corner locations to use them in the homography 
-        # function
+        # Numpy-ize the lists of corner locations to use them in the homography function
         src = np.array(corners, np.float32)
         dst = np.array(central_square, np.float32)
 
@@ -63,6 +59,11 @@ if __name__ == "__main__":
 
         # Draw everything
         if draw:
+
+            # Define some colors to use when we draw vertices
+            blue = (255, 0, 0)
+            green = (0, 255, 0)
+
             # Draw the original and orthographic projections
             draw_corners(img, corners, blue)
             draw_corners(ortho, central_square, green)
@@ -79,57 +80,3 @@ if __name__ == "__main__":
                 plt.show()
         
         cv2.imwrite('orthographic/' + str(image_number) + '.jpg', ortho)
-
-    '''
-    <<<<<<< HEAD
-    cv_or_mpl = 'cv'
-
-    # Load the test image
-    path = '../data/m7/IMG_0289.JPG'
-    img = cv2.imread(path, cv2.CV_LOAD_IMAGE_COLOR)
-
-    # Get the smallest square in the image
-    polys, group1, group2 = find_squares_in_image(img)
-
-    # The corners are ordered: top right, bottom right, top left, bottom left
-    corners = find_smallest_square(polys)
-
-    # Construct a square by assuming that the top right and bottom left corners
-    # will be the starting points
-    top_right = corners[0]
-    bottom_left = corners[3]
-    side_length = max([np.abs(top_right[i] - bottom_left[i]) for i in range(2)])
-
-    # Offset the starting corner by some amount in the x direction to avoid
-    # clipping
-    offset = 50
-    trr = tuple([top_right[0] + offset, top_right[1]])
-    rectified_corners = [trr, (trr[0], trr[1] + side_length), 
-                        (trr[0] - side_length, trr[1]),
-                        (trr[0] - side_length, trr[1] + side_length)]
-
-
-    # Define some colors to use in plotting
-    blue = (255, 0, 0)
-    green = (0, 255, 0)
-
-    # Draw
-    draw_corners(img, corners, blue)
-    draw_corners(img, rectified_corners, green)
-    if cv_or_mpl == 'cv':
-        cv2.imshow('img', img)
-        cv2.waitKey()
-    else:
-        plt.figure('img')
-        plt.imshow(img)
-
-    src = np.array(corners, np.float32)
-    dst = np.array(rectified_corners, np.float32)
-    transform = cv2.getPerspectiveTransform(src, dst)
-    ortho = cv2.warpPerspective(img, transform, (960, 720))
-    cv2.imshow('ortho', ortho)
-    cv2.imwrite('ortho.jpg', ortho)
-    cv2.waitKey()
-    =======
-    '''
-
