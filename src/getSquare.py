@@ -22,6 +22,7 @@ def line_intersection(line1, line2):
     y = det(d, ydiff) / div
     return x, y
 
+
 # Determine whether or not two lines intersect somewhere in the image and return
 # a Boolean value
 def intersection_within_image(line1, line2, img_shape):
@@ -35,10 +36,13 @@ def intersection_within_image(line1, line2, img_shape):
         return False
     return True
 
-def find_squares_in_image(img):
 
+def find_squares_in_image(img):
+    '''
+    Find the vertices all of the four-sided polygons in the image
+    '''
     # Get the hough lines for the image
-    ave_lines = hough_lines(image_path)
+    ave_lines = hough_lines(img)
 
     # Sanity check, we need at least four lines for the image to be used
     if len(ave_lines) < 4:
@@ -92,7 +96,8 @@ def find_squares_in_image(img):
 
     return polys, group1, group2
 
-def find_smallest_square(polys):
+
+def find_smallest_square(img):
     ''' 
     Of all the quadrangles in an image, find the coordinates of the corners
     of the smallest one, which is likely to be a square
@@ -104,7 +109,7 @@ def find_smallest_square(polys):
     dists = [distance(p1, p2)**2 + distance(p3, p4)**2 for p1,p2,p3,p4 in polys]
     p1,p2,p3,p4 = polys[dists.index(min(dists))]
 
-    return p1, p2, p3, p4
+    return [p1, p2, p3, p4]
 
 
 # Run this demonstration if we're running this as a script
@@ -120,13 +125,13 @@ if __name__ == '__main__':
     # Draw the colored lines on the image
     color_img_with_lines = draw_x1y1_x2y2_lines(group1, color_img, (0, 255, 0))
     color_img_with_lines = draw_x1y1_x2y2_lines(group2, color_img_with_lines, (255, 0, 0))
-    p1, p2, p3, p4 = find_smallest_square(polys)
+    corners = find_smallest_square(polys)
 
     # Draw circles on the corners of the smallest detected square
-    cv2.circle(color_img_with_lines, p1, 10, (255, 0, 0), -1)
-    cv2.circle(color_img_with_lines, p2, 10, (255, 0, 0), -1)
-    cv2.circle(color_img_with_lines, p3, 10, (255, 0, 0), -1)
-    cv2.circle(color_img_with_lines, p4, 10, (255, 0, 0), -1)
-    
+    cv2.circle(color_img_with_lines, corners[0], 10, (255, 0, 0), -1)
+    cv2.circle(color_img_with_lines, corners[1], 10, (255, 0, 0), -1)
+    cv2.circle(color_img_with_lines, corners[2], 10, (255, 0, 0), -1)
+    cv2.circle(color_img_with_lines, corners[3], 10, (255, 0, 0), -1)
+
     cv2.imshow('foo', color_img_with_lines)
     cv2.waitKey()

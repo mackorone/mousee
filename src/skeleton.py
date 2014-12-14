@@ -1,10 +1,10 @@
 import cv2
 import numpy as np
 
-def skeletonize(img_path):
+def skeletonize(img):
 
     # Get the image
-    img = cv2.imread(img_path, cv2.CV_LOAD_IMAGE_COLOR)
+    # img = cv2.imread(img_path, cv2.CV_LOAD_IMAGE_COLOR)
 
     # Create the red mask
     lower_red = np.array([0,10,155])
