@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from skeleton import skeletonize
+from skeleton import *
 
 # Converts rho-theta lines to x1y1-x2y2 lines. We use the size of the image so
 # as to ensure the endpoints of the seqments do not exceed the image edges 
@@ -75,7 +75,6 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
             if not (0 <= a and a <= num_cols):
                 print 'ERROR - x value of segment out of range'
                 exit(0)
-
         for b in [y1, y2]:
             if not (0 <= b and b <= num_rows):
                 print 'ERROR - y value of segment out of range'
@@ -102,17 +101,15 @@ def draw_x1y1_x2y2_lines(lines, img, color):
 # Gets the rho-theta hough lines for a maze image
 def hough_lines(img):
 
-    # Get the color image (for display purposes)
-    # color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
-
     # Skeletonize the input image
     skel = skeletonize(img)
 
     # Use a Hough Tranform to extra all lines in rho-theta form
     lines = [(rho, theta) if rho >= 0 else (-rho, theta - np.pi)
             for rho, theta in cv2.HoughLines(skel, 1, np.pi/180, 65)[0]]
-    # TODO: lines on opposite sides of the origin are no good...
-    # The quoted out portions are my attempt to fix those lines
+
+    # Note: Lines on opposite sides of the origin aren't being recognized as part
+    # of the same group. The quoted out portions are my attempt to fix those lines.
     '''
     lines = [(rho, theta) if theta >= 0 else (-rho, theta - np.pi)
     '''
@@ -151,8 +148,19 @@ def hough_lines(img):
             cv2.imshow('houghlines.jpg', copy)
             cv2.waitKey()
 
+    # TODO: Can we re-center the lines? Sometimes they're a little off
+
     # Get the average for each group
     ave_lines = [(np.mean([x[0] for x in group]), np.mean([x[1] for x in group]))
                 for group in line_groups if len(group) > 1]
 
     return ave_lines
+
+# Demo
+if __name__ == '__main__':
+    image_path = '../data/m7/IMG_0290.JPG'
+    color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
+    lines = hough_lines(color_img)
+    color_img = draw_rho_theta_lines(lines, color_img, (0,255,0))
+    cv2.imshow('Hough', color_img)
+    cv2.waitKey()

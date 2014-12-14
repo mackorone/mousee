@@ -1,9 +1,6 @@
 import cv2
 import numpy as np
-from hough import hough_lines
-from hough import draw_rho_theta_lines
-from hough import draw_x1y1_x2y2_lines
-from hough import rho_theta_to_x1y1_x2y2
+from hough import *
 
 # The code for this function was taken from:
 # http://stackoverflow.com/questions/20677795/find-the-point-of-intersecting-lines
@@ -55,14 +52,10 @@ def get_groups_of_lines(x_y_lines, img_shape):
             group2.add(y)
     return list(group1), list(group2)
 
-
-def get_square(image_path):
-
-    # Get the color image
-    color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
+def get_square(img):
 
     # Get the hough lines for the image
-    ave_lines = hough_lines(image_path)
+    ave_lines = hough_lines(img)
 
     # Sanity check, we need at least four lines for the image to be used
     if len(ave_lines) < 4:
@@ -70,10 +63,10 @@ def get_square(image_path):
         exit(1)
 
     # Get the ((x1,y1),(x2,y2)) from the (rho, theta) representation
-    x_y_lines = rho_theta_to_x1y1_x2y2(ave_lines, np.shape(color_img))
+    x_y_lines = rho_theta_to_x1y1_x2y2(ave_lines, np.shape(img))
 
     # Get the groups of lines
-    group1, group2 = get_groups_of_lines(x_y_lines, np.shape(color_img))
+    group1, group2 = get_groups_of_lines(x_y_lines, np.shape(img))
 
     # Now find all of the four-sided polygons
     polys = []
@@ -85,10 +78,10 @@ def get_square(image_path):
                     line2 = group1[j]
                     line3 = group2[k]
                     line4 = group2[l]
-                    if (intersection_within_image(line1, line3, np.shape(color_img))
-                    and intersection_within_image(line1, line4, np.shape(color_img))
-                    and intersection_within_image(line2, line4, np.shape(color_img))
-                    and intersection_within_image(line2, line4, np.shape(color_img))):
+                    if (intersection_within_image(line1, line3, np.shape(img))
+                    and intersection_within_image(line1, line4, np.shape(img))
+                    and intersection_within_image(line2, line4, np.shape(img))
+                    and intersection_within_image(line2, line4, np.shape(img))):
                         p1 = line_intersection(line1, line3)
                         p2 = line_intersection(line1, line4)
                         p3 = line_intersection(line2, line3)
@@ -104,3 +97,26 @@ def get_square(image_path):
     p1,p2,p3,p4 = polys[dists.index(min(dists))]
 
     return (p1, p2, p3, p4)
+
+# Demo
+if __name__ == '__main__':
+
+    # Specify the image path and get the color image
+    image_path = '../data/m7/IMG_0290.JPG'
+    color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
+    lines = rho_theta_to_x1y1_x2y2(hough_lines(color_img), np.shape(color_img))
+    group1, group2 = get_groups_of_lines(lines, np.shape(color_img))
+    p1,p2,p3,p4 = get_square(color_img)
+
+    # Draw the colored lines on the image
+    img = draw_x1y1_x2y2_lines(group1, color_img, (0, 255, 0))
+    img = draw_x1y1_x2y2_lines(group2, img, (255, 0, 0))
+
+    # Draw circles on the corners
+    cv2.circle(img, p1, 10, (255, 0, 0), -1)
+    cv2.circle(img, p2, 10, (255, 0, 0), -1)
+    cv2.circle(img, p3, 10, (255, 0, 0), -1)
+    cv2.circle(img, p4, 10, (255, 0, 0), -1)
+
+    cv2.imshow('Square', img)
+    cv2.waitKey()

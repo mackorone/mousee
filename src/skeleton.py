@@ -3,8 +3,8 @@ import numpy as np
 
 def skeletonize(img):
 
-    # Get the image
-    # img = cv2.imread(img_path, cv2.CV_LOAD_IMAGE_COLOR)
+    # Ensure we don't change the original image
+    img = img.copy()
 
     # Create the red mask
     lower_red = np.array([0,10,155])
@@ -52,3 +52,10 @@ def skeletonize(img):
             cv2.rectangle(skel,(x,y),(x+w,y+h),0,-1)
 
     return skel
+
+# Demo
+if __name__ == '__main__':
+    image_path = '../data/m7/IMG_0290.JPG'
+    color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
+    cv2.imshow('Skeleton', skeletonize(color_img))
+    cv2.waitKey()
