@@ -97,7 +97,7 @@ def find_squares_in_image(img):
     return polys, group1, group2
 
 
-def find_smallest_square(img):
+def find_smallest_square(polys):
     ''' 
     Of all the quadrangles in an image, find the coordinates of the corners
     of the smallest one, which is likely to be a square
@@ -111,6 +111,20 @@ def find_smallest_square(img):
 
     return [p1, p2, p3, p4]
 
+def draw_corners(img, corners, color):
+    ''' 
+    Draw the corners of a square on an image.
+    
+    Parameters:
+    img (array-like)
+    corners (list) - must have 4 elements
+    color (tuple) - must have 3 integer elements all in the range 0-255
+    '''
+    assert(0 <= color[0] <= 255 and 0 <= color[1] <= 255 and 0 <= color[2] <= 255)
+    cv2.circle(img, corners[0], 10, color, -1)
+    cv2.circle(img, corners[1], 10, color, -1)
+    cv2.circle(img, corners[2], 10, color, -1)
+    cv2.circle(img, corners[3], 10, color, -1)
 
 # Run this demonstration if we're running this as a script
 if __name__ == '__main__':
@@ -126,12 +140,9 @@ if __name__ == '__main__':
     color_img_with_lines = draw_x1y1_x2y2_lines(group1, color_img, (0, 255, 0))
     color_img_with_lines = draw_x1y1_x2y2_lines(group2, color_img_with_lines, (255, 0, 0))
     corners = find_smallest_square(polys)
-
+    draw_corners(color_img_with_lines, corners, (255, 0, 0))
     # Draw circles on the corners of the smallest detected square
-    cv2.circle(color_img_with_lines, corners[0], 10, (255, 0, 0), -1)
-    cv2.circle(color_img_with_lines, corners[1], 10, (255, 0, 0), -1)
-    cv2.circle(color_img_with_lines, corners[2], 10, (255, 0, 0), -1)
-    cv2.circle(color_img_with_lines, corners[3], 10, (255, 0, 0), -1)
+
 
     cv2.imshow('foo', color_img_with_lines)
     cv2.waitKey()
