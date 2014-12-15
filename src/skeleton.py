@@ -1,16 +1,19 @@
 import cv2
 import numpy as np
 
+def get_red_mask(img):
+    lower_red = np.array([0,10,155])
+    upper_red = np.array([10,255,255])
+    hsv = cv2.cvtColor(img.copy(), cv2.COLOR_BGR2HSV)
+    return cv2.inRange(hsv, lower_red, upper_red)
+
 def skeletonize(img):
 
     # Ensure we don't change the original image
     img = img.copy()
 
     # Create the red mask
-    lower_red = np.array([0,10,155])
-    upper_red = np.array([10,255,255])
-    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    red_mask = cv2.inRange(hsv, lower_red, upper_red)
+    red_mask = get_red_mask(img)
 
     # Dilate the red mask
     d_k_s = 5 # dilation_kernel_size

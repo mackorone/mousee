@@ -116,7 +116,7 @@ def hough_lines(img):
 
     # Grouping tolerance for each of the parameters
     rho_tolerance = 30 # pixel distance
-    theta_tolerance = np.pi / 4.0 # radians # TODO: 30.0
+    theta_tolerance = np.pi / 30.0
 
     # Create the groups of lines
     line_groups = []
@@ -149,6 +149,7 @@ def hough_lines(img):
             cv2.waitKey()
 
     # TODO: Can we re-center the lines? Sometimes they're a little off
+    # TODO: This needs to be improved ...
 
     # Get the average for each group
     ave_lines = [(np.mean([x[0] for x in group]), np.mean([x[1] for x in group]))
@@ -158,11 +159,9 @@ def hough_lines(img):
 
 # Demo
 if __name__ == '__main__':
-    #image_path = '../data/m7/IMG_0290.JPG'
-    image_path = '3.JPG'
+    image_path = '../data/m7/IMG_0290.JPG'
     color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
     lines = hough_lines(color_img)
     color_img = draw_rho_theta_lines(lines, color_img, (0,255,0))
-    cv2.imwrite('Hough.jpg', color_img)
-    #cv2.imshow('Hough', color_img)
-    #cv2.waitKey()
+    cv2.imshow('Hough', color_img)
+    cv2.waitKey()
