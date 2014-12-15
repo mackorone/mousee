@@ -8,7 +8,6 @@ from skeleton import *
 # Sorts points in a polygon in circular order
 def circ_sort(points):
     center = (np.mean([z[0] for z in points]), np.mean([z[1] for z in points]))
-    cv2.circle(img, (int(center[0]), int(center[1])), 10, (255, 255, 255), -1)
     xy_and_theta = [(p,np.arctan2(p[1]-center[1], p[0]-center[0])) for p in points]
     return [z[0] for z in sorted(xy_and_theta, key = lambda x: x[1])]
 
@@ -35,7 +34,7 @@ def persp_to_ortho(img):
     ortho = cv2.warpPerspective(img, transform, (ortho_size, ortho_size))
 
     # Crop to the red region
-    border = 10
+    border = 50
     nonzeros = np.nonzero(get_red_mask(ortho))
     upper = np.min(nonzeros[0][:]) - border
     lower = np.max(nonzeros[0][:]) + border

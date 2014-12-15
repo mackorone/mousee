@@ -2,6 +2,25 @@ import cv2
 import numpy as np
 from skeleton import *
 
+# Groups lines that are within a certain distance of each other
+# This is mostly used for extracting walls in the composite image
+def group_rho_theta_lines(lines, rho_dist, theta_dist):
+    pairs = []
+    line_set = set(lines)
+    for i in range(len(lines)):
+        for j in range(i+1, len(lines)):
+            rho0, theta0 = lines[i]
+            rho1, theta1 = lines[j]
+            if (abs(rho0 - rho1) < rho_dist and abs(theta0 - theta1) < theta_dist):
+                pairs.append((lines[i], lines[j]))
+    for p in pairs:
+        for i in [0,1]:
+            if p[i] in line_set:
+                line_set.remove(p[i])
+        # Something better than averaging???
+        line_set.add(((p[0][0] + p[1][0])/2., (p[0][1] + p[1][1])/2.))
+    return list(line_set)
+
 # Converts rho-theta lines to x1y1-x2y2 lines. We use the size of the image so
 # as to ensure the endpoints of the seqments do not exceed the image edges 
 def rho_theta_to_x1y1_x2y2(lines, img_shape):

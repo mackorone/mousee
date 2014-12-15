@@ -5,7 +5,8 @@ from get_square import *
 
 def get_intersection_points(img):
 
-    ave_lines = hough_lines(img)
+    # Note that we group here again to ensure we the correct amount of lines
+    ave_lines = group_rho_theta_lines(hough_lines(img), 100, np.pi/20)
     xy_lines = rho_theta_to_x1y1_x2y2(ave_lines, np.shape(img))
     group1, group2 = get_groups_of_lines(xy_lines, np.shape(img))
 
@@ -43,14 +44,17 @@ def extract_walls(img):
     def horizontal_wall_exists(img, left, right):
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         y = int((left[1] + right[1])/2)
-        window = hsv[y-win_size:y+win_size, left[0]+win_offset:right[0]-win_offset, :]
+        window = hsv[max(y-win_size, 0):min(y+win_size, np.shape(img)[0]), left[0]+win_offset:right[0]-win_offset, :]
         red_mask = cv2.inRange(window, lower_red, upper_red)
+        cv2.imshow('asdf', red_mask)
+        cv2.waitKey() # TODO
+        # TODO large discrepancy??? Still fixing this...
         return sum(sum(red_mask)) > 500
 
     def vertical_wall_exists(img, top, bottom):
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         x = int((top[0] + bottom[0])/2)
-        window = hsv[top[1]+win_offset:bottom[1]-win_offset, x-win_size:x+win_size, :]
+        window = hsv[top[1]+win_offset:bottom[1]-win_offset, max(x-win_size,0):min(x+win_size, np.shape(img)[1]), :]
         red_mask = cv2.inRange(window, lower_red, upper_red)
         return sum(sum(red_mask)) > 500
 
@@ -70,12 +74,12 @@ def extract_walls(img):
                 # TODO: Add to walls
 
     # Check all pairs of points along the vertical
-    for i in range(len(rows[0])): # TODO: The indices can be changed
-        for j in range(len(rows)-1): # TODO: The indices can be changed
-            if vertical_wall_exists(img, rows[j][i], rows[j+1][i]):
+    for j in range(len(rows[0])): # TODO: The indices can be changed
+        for i in range(len(rows)-1): # TODO: The indices can be changed
+            if vertical_wall_exists(img, rows[i][j], rows[i+1][j]):
                 # TODO: Delete this
                 '''
-                center = ((rows[j][i][0] + rows[j+1][i][0])/2, (rows[j][i][1] + rows[j+1][i][1])/2)
+                center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
                 cv2.circle(img, center, 8, (0, 0, 255), -1)
                 '''
                 pass
@@ -91,8 +95,7 @@ def extract_walls(img):
 # Demo
 if __name__ == '__main__':
 
-    #image_path = 'topdown_cropped.jpg'
-    image_path = '3.JPG'
+    image_path = 'topdown_cropped.jpg'
     img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
 
     # We need a sparate image to draw on
@@ -105,7 +108,6 @@ if __name__ == '__main__':
 
     # Draw the walls
     walls = extract_walls(img)
-    #center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
     print walls
 
     cv2.imshow('Walls', draw_img)

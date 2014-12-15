@@ -1,25 +1,9 @@
 # Note: This file is a modified version of https://github.com/cbuntain/stitcher
 
-# TODO: Reduce the number of imports
-import os
-import sys
 import cv2
 import math
 import numpy as np
 from numpy import linalg
-
-def filter_matches(matches, ratio = 0.75):
-    filtered_matches = []
-    for m in matches:
-        if len(m) == 2 and m[0].distance < m[1].distance * ratio:
-            filtered_matches.append(m[0])
-    return filtered_matches
-    
-def imageDistance(matches):
-    sumDistance = 0.0
-    for match in matches:
-        sumDistance += match.distance
-    return sumDistance
 
 def findDimensions(image, homography):
 
@@ -60,14 +44,13 @@ def findDimensions(image, homography):
 
     return (min_x, min_y, max_x, max_y)
 
+# Stitch the add_img onto the base_img
 def stitch(base_img, add_img):
 
     base_img_blur = cv2.GaussianBlur(cv2.cvtColor(base_img.copy(), cv2.COLOR_BGR2GRAY), (5,5), 0)
 
-    # Use the SIFT feature detector
+    # Use the SIFT feature detector to find key points in base image for motion estimation
     detector = cv2.SIFT()
-
-    # Find key points in base image for motion estimation
     base_features, base_descs = detector.detectAndCompute(base_img_blur, None)
 
     # Parameters for nearest-neighbor matching
@@ -75,44 +58,25 @@ def stitch(base_img, add_img):
     flann_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
     matcher = cv2.FlannBasedMatcher(flann_params, {})
 
-    # Info
-    next_img = cv2.GaussianBlur(cv2.cvtColor(add_img.copy(), cv2.COLOR_BGR2GRAY), (5,5), 0)
-    next_features, next_descs = detector.detectAndCompute(next_img, None)
+    # Get matching information for stitching
+    add_img_blur = cv2.GaussianBlur(cv2.cvtColor(add_img.copy(), cv2.COLOR_BGR2GRAY), (5,5), 0)
+    next_features, next_descs = detector.detectAndCompute(add_img_blur, None)
     matches = matcher.knnMatch(next_descs, trainDescriptors=base_descs, k=2)
-    matches_subset = filter_matches(matches)
-    distance = imageDistance(matches_subset)
-    averagePointDistance = distance/float(len(matches_subset))
+    matches_subset = [m[0] for m in matches if len(m) == 2 and m[0].distance < 0.75*m[1].distance]
 
-    # TODO: list comprehension
-    kp1 = []
-    kp2 = []
-    for match in matches_subset:
-        kp1.append(base_features[match.trainIdx])
-        kp2.append(next_features[match.queryIdx])
-
+    # Find the homorgraphy from matched points
+    kp1 = [base_features[match.trainIdx] for match in matches_subset]
+    kp2 = [next_features[match.queryIdx] for match in matches_subset]
     p1 = np.array([k.pt for k in kp1])
     p2 = np.array([k.pt for k in kp2])
-
     H, status = cv2.findHomography(p1, p2, cv2.RANSAC, 5.0)
 
-    inlierRatio = float(np.sum(status)) / float(len(status))
-    
-    closestImage = {}
-    closestImage['h'] = H
-    closestImage['inliers'] = inlierRatio
-    closestImage['rgb'] = add_img
-    closestImage['img'] = next_img
-    closestImage['match'] = matches_subset
+    # Once we have the homography, generate the composite image
 
-
-    # Does it work from here??? -----------------------------------------
-
-
-    H = closestImage['h']
     H = H / H[2,2]
     H_inv = linalg.inv(H)
 
-    (min_x, min_y, max_x, max_y) = findDimensions(closestImage['img'], H_inv)
+    (min_x, min_y, max_x, max_y) = findDimensions(add_img_blur, H_inv)
 
     # Adjust max_x and max_y by base img size
     max_x = max(max_x, base_img_blur.shape[1])
@@ -135,7 +99,7 @@ def stitch(base_img, add_img):
 
     # Warp the new image given the homography from the old image
     base_img_warp = cv2.warpPerspective(base_img, move_h, (img_w, img_h))
-    next_img_warp = cv2.warpPerspective(closestImage['rgb'], mod_inv_h, (img_w, img_h))
+    next_img_warp = cv2.warpPerspective(add_img, mod_inv_h, (img_w, img_h))
 
     # Put the base image on an enlarged palette
     enlarged_base_img = np.zeros((img_h, img_w, 3), np.uint8)
@@ -144,55 +108,37 @@ def stitch(base_img, add_img):
     (ret,data_map) = cv2.threshold(cv2.cvtColor(next_img_warp, cv2.COLOR_BGR2GRAY), 
         0, 255, cv2.THRESH_BINARY)
 
-    enlarged_base_img = cv2.add(enlarged_base_img, base_img_warp, 
-        mask=np.bitwise_not(data_map), 
-        dtype=cv2.CV_8U)
+    enlarged_base_img = cv2.add(enlarged_base_img, base_img_warp,
+                                mask=np.bitwise_not(data_map), dtype=cv2.CV_8U)
 
     # Now add the warped image
-    final_img = cv2.add(enlarged_base_img, next_img_warp, 
-        dtype=cv2.CV_8U)
+    final_img = cv2.add(enlarged_base_img, next_img_warp, dtype=cv2.CV_8U)
 
     # Crop off the black edges
     final_gray = cv2.cvtColor(final_img, cv2.COLOR_BGR2GRAY)
     _, thresh = cv2.threshold(final_gray, 1, 255, cv2.THRESH_BINARY)
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    print "Found %d contours..." % (len(contours))
 
     max_area = 0
     best_rect = (0,0,0,0)
 
     for cnt in contours:
         x,y,w,h = cv2.boundingRect(cnt)
-        # print "Bounding Rectangle: ", (x,y,w,h)
-
         deltaHeight = h-y
         deltaWidth = w-x
-
         area = deltaHeight * deltaWidth
-
         if ( area > max_area and deltaHeight > 0 and deltaWidth > 0):
             max_area = area
             best_rect = (x,y,w,h)
 
-    if ( max_area > 0 ):
-        print "Maximum Contour: ", max_area
-        print "Best Rectangle: ", best_rect
+    if (max_area > 0):
+        final_img = final_img[best_rect[1]:best_rect[1]+best_rect[3],
+                              best_rect[0]:best_rect[0]+best_rect[2]]
+    return final_img
 
-        final_img_crop = final_img[best_rect[1]:best_rect[1]+best_rect[3],
-                best_rect[0]:best_rect[0]+best_rect[2]]
-
-        # utils.showImage(final_img_crop, scale=(0.2, 0.2), timeout=0)
-        # cv2.destroyAllWindows()
-
-        final_img = final_img_crop
-
-    # Write out the current round
-    #final_filename = "%s/%d.JPG" % (output_dir, round)
-    #cv2.imwrite(final_filename, final_img)
-    cv2.imwrite('foop.jpg', final_img)
-
-
+# Demo
 if __name__ == '__main__':
     base_img = cv2.imread('../data/m7/IMG_0290.JPG')
     add_img = cv2.imread('../data/m7/IMG_0291.JPG')
-    stitch(base_img, add_img)
+    cv2.imshow('Stitch', stitch(base_img, add_img))
+    cv2.waitKey()
