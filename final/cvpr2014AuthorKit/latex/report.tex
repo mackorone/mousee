@@ -25,21 +25,21 @@
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{CSE473 Final Project: Vision-based MicroMouse Maze Wall Detection}
+\title{CSE473 Final Project: Vision-based Micromouse Maze Wall Detection}
 
-\author{Scott Will\\
+\author{Scott Will, Mack Ward\\
 University at Buffalo\\
 Amherst, NY 14261\\
-{\tt\small scottwil@buffalo.edu}
+{\tt\small scottwil@buffalo.edu, mward4@buffalo.edu}
 % For a paper whose authors are all at the same institution,
 % omit the following lines up until the closing ``}''.
 % Additional authors and addresses can be added with ``\and'',
 % just like the second author.
 % To save space, use either the email address or home page, not both
-\and
-Mack Ward\\
-University at Buffalo\\
-{\tt\small mward4@buffalo.edu}
+% \and
+% Mack Ward\\
+% University at Buffalo\\
+% {\tt\small mward4@buffalo.edu}
 }
 
 \maketitle
@@ -47,19 +47,106 @@ University at Buffalo\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
+	Since the late 1970s, students and professional engineers alike have competed in Micromouse, an event in which teams
+	of participants construct wheeled robots that attempt to autonomously traverse and solve planar mazes in as little
+	time as possible.  A common solution strategies adopted by competitors is a two-stage process: first, a mouse
+	explores the maze and incrementally generates a virtual representation of the maze layout in its internal memory,
+	then computes the optimal path from the starting position to the center of the maze, and finally returns to the
+	starting position and moves along the optimal path.  Although this approach is effective and reliable, most of the
+	total time spent in transit by the mouse tends to be devoted to the exploration phase.  To reduce this time, we
+	propose a much different strategy: using a camera mounted on the mouse at sufficient height and techniques from
+	computer vision and image processing, generate an image of the maze from the perspective of a viewer looking down
+	from above, extract the locations of the maze walls programmatically, and proceed to solve the maze by directly
+	moving to its center.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
 \section{Introduction}
+\label{sec:introduction}
 %-------------------------------------------------------------------------
 
+\subsection{Competition rules}
+\label{subsec:rules}
+In order to lessen the burden of constructing appropriately-sized vehicles, typical Micromouse events follow standard
+rules and maze-guidelines.  We reproduce them here for thoroughness (adapted from the official rules from the IEEE
+Region 1 Micromouse
+Competition) []:
+
+\subsubsection{Rules for the micromouse}
+\label{subsubsec:mouserules}
+\begin{enumerate}
+	\item A Micromouse shall be self-contained (no remote controls). A Micromouse shall not use an energy source
+	employing a combustion process.
+	\item A Micromouse shall not leave any part of its body behind while negotiating the maze.
+	\item A Micromouse shall not jump over, fly over, climb, scratch, cut, burn, mark, damage, or destroy
+	the walls of the maze.
+	\item A Micromouse shall not be larger either in length or in width, than 25 centimeters. The dimensions of a
+	Micromouse that changes its geometry during a run shall not be greater than $25\ \textrm{cm} \times 25\
+	\textrm{cm}$. There are no restrictions on the height of a Micromouse.
+\end{enumerate}
+
+\subsubsection{Rules for the maze}
+\label{subsubsec:mazerules}
+\begin{enumerate}
+	\item The maze is composed of multiples of an $18\ \textrm{cm} \times 18\ \textrm{cm}$ unit square. The maze
+       comprises $16 \times 16$ unit squares. The walls of the maze are $5\ \textrm{cm}$ high and $1.2\ \textrm{cm}$
+       thick (assume 5\% tolerance for mazes). The outside wall encloses the entire maze.
+	\item The sides of the maze walls are white, the tops of the walls are red, and the floor is black. The maze is made
+       of wood, finished with non-gloss paint.
+	\item The start of the maze is located at one of the four corners. The start square is bounded on three sides by
+       walls. The start line is located between the first and second squares. That is, as the mouse exits the corner
+       square, the time starts. The destination goal is the four cells at the center of the maze. At the center of this
+       zone is a post, $20\ \textrm{cm}$ high and each side $2.5\ \textrm{cm}$. (This post may be removed if requested.)
+       The destination square has only one entrance.
+	\item Small square zones (posts), each $1.2\ \textrm{cm} \times 1.2\ \textrm{cm}$, at the four corners of each unit
+       square are called lattice points. The maze is so constituted that there is at least one wall at each lattice
+       point.
+	\item Multiple paths to the destination square are allowed and are to be expected. The destination square will be
+       positioned so that a wall-hugging mouse will NOT be able to find it.
+\end{enumerate}
+
+\subsection{Common Solution Methods}
+\label{subsec:solutionmethods}
+As briefly described above, a great majority of teams tend to follow roughly the same high-level steps for producing a
+mouse capable of reaching the center of a maze meeting the above specifications:
+
+\begin{enumerate}
+	\item Fully traverse the maze (including all dead-end routes) and generate an internal representation of the maze
+	topology
+	\item Use one or more searching algorithms such as bread-first or depth-first search, to find the optimal path from the starting point to the maze center
+	\item Move along the optimal path to reach the maze center
+\end{enumerate}
+
+A less-popular method is the so-called "wall-follower" approach, which seeks to eventually reach the center of the maze
+by simply moving along a given wall for its entire length.  This is not guaranteed to be effective for all possible maze
+structures, and is officially discouraged by the competition organizers (see \textsection\ref{subsubsec:mazerules}).
+
+\subsection{Our Solution}
+\label{subsec:oursolution}
+As members of the IEEE student chapter at UB, we have competed in the annual IEEE Region 1 Micromouse Competition, which
+is open to student teams from universities across the northeastern United States, twice.  We conceived the idea to
+engineer a vision-based Micromouse implementation after observing the weaknesses of the "traditional" style of
+implementation, which, in our opinion, spent too much unnecessary time determining maze layouts before being able to
+arrive at, and traverse, solutions.  We realized that because of the regularity of competition mazes, which were
+composed of equally-sized unit squares, uniform-height walls, and so on, that it might be possible to extract all of the
+necessary information to produce an accurate representation of maze layout using only visual data obtainable from the
+Micromouse's perspective.
+
 \section{Related Work}
+\label{sec:relatedwork}
+We are not the first to suggest using tools from computer vision to improve the capabilities of Micromouse
+implementations.  In 1997, Ning Chen suggested to revise the Micromouse competition to encourage solutions more relevant to real-world engineering challenges, by introducing uneven mazes resembling real 
+
+
 \section{Algorithm}
+\label{sec:algorithm}
 \section{Results}
+\label{sec:results}
 \section{Discussion}
+\label{sec:discussion}
 {\small
 \bibliographystyle{ieee}
-\bibliography{egbib}
+\bibliography{references}
 }
 
 \end{document}

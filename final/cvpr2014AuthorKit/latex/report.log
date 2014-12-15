@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  11 DEC 2014 18:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  15 DEC 2014 14:24
 entering extended mode
-**C:/Users/Scott/Google*Drive/School*Docs/CSE/CSE473/Reports/final/cvpr2014Auth
-orKit/latex/report.tex
+**D:/Users/Scott/Documents/GitHub/mousee/final/cvpr2014AuthorKit/latex/report.t
+ex
 
-("C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/Reports/final/cvpr2014Auth
-orKit/latex/report.tex"
+(D:/Users/Scott/Documents/GitHub/mousee/final/cvpr2014AuthorKit/latex/report.te
+x
 LaTeX2e <2014/05/01>
 Babel <3.9l> and hyphenation patterns for 68 languages loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -24,14 +24,13 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\cvpr.sty"
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\eso-pic.sty"
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\cvpr.sty
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\eso-pic.s
+ty
 Package: eso-pic 2002/11/16 v1.1b eso-pic (RN)
 
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\cvpr_eso.sty"
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\cvpr_eso.
+sty
 
 LaTeX Warning: You have requested package `eso-pic',
                but the package provides `everyshi'.
@@ -279,8 +278,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip48
 )
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\report.aux")
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\report.au
+x)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
@@ -296,8 +295,7 @@ LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 25.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ABD: EveryShipout initializing macros
@@ -357,37 +355,55 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
 
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\report.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 65.
- [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+Underfull \hbox (badness 10000) in paragraph at lines 70--74
+[]\OT1/ptm/m/n/10 In or-der to lessen the bur-den of con-struct-ing
+ []
 
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 65.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 122.
 
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\report.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 65.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 65.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 65.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 122.
+
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\report.bb
+l)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 151.
+ [2]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 151.
+
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\report.au
+x)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 151.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 151.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 151.
  ) 
 Here is how much of TeX's memory you used:
- 6146 strings out of 493705
- 88589 string characters out of 3144569
- 172081 words of memory out of 3000000
- 9379 multiletter control sequences out of 15000+200000
- 20960 words of font info for 51 fonts, out of 3000000 for 9000
+ 6208 strings out of 493705
+ 89099 string characters out of 3144569
+ 177560 words of memory out of 3000000
+ 9415 multiletter control sequences out of 15000+200000
+ 27542 words of font info for 65 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 34i,9n,26p,343b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,9n,26p,323b,324s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
-s/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
-es/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (1 page, 52107 bytes).
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8
+a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (2 pages, 94494 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
+ 79 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

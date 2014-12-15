@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  11 DEC 2014 18:41
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  15 DEC 2014 12:39
 entering extended mode
-**C:/Users/Scott/Google*Drive/School*Docs/CSE/CSE473/Reports/final/cvpr2014Auth
-orKit/latex/egpaper_final.tex
+**D:/Users/Scott/Documents/GitHub/mousee/final/cvpr2014AuthorKit/latex/egpaper_
+final.tex
 
-("C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/Reports/final/cvpr2014Auth
-orKit/latex/egpaper_final.tex"
+(D:/Users/Scott/Documents/GitHub/mousee/final/cvpr2014AuthorKit/latex/egpaper_f
+inal.tex
 LaTeX2e <2014/05/01>
 Babel <3.9l> and hyphenation patterns for 68 languages loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -24,14 +24,13 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\cvpr.sty"
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\eso-pic.sty"
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\cvpr.sty
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\eso-pic.s
+ty
 Package: eso-pic 2002/11/16 v1.1b eso-pic (RN)
 
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\cvpr_eso.sty"
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\cvpr_eso.
+sty
 
 LaTeX Warning: You have requested package `eso-pic',
                but the package provides `everyshi'.
@@ -279,8 +278,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip48
 )
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\egpaper_final.aux")
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\egpaper_f
+inal.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
@@ -296,8 +295,7 @@ LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
 LaTeX Font Info:    ... okay on input line 24.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 24.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ABD: EveryShipout initializing macros
@@ -362,28 +360,28 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 
 
 ] [4322] [4323]
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\egpaper_final.bbl" [4324])
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\egpaper_f
+inal.bbl [4324])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 457.
  [4325
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 457.
 
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\Reports\final\cvpr2014Auth
-orKit\latex\egpaper_final.aux")
+(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\egpaper_f
+inal.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 457.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 457.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 457.
  ) 
 Here is how much of TeX's memory you used:
  6218 strings out of 493705
- 89475 string characters out of 3144569
+ 89175 string characters out of 3144569
  178474 words of memory out of 3000000
  9416 multiletter control sequences out of 15000+200000
  36633 words of font info for 88 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 34i,9n,26p,398b,470s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,9n,26p,378b,470s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/font
