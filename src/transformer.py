@@ -2,18 +2,19 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from get_square import *
+import os
 
 if __name__ == "__main__":
 
     draw = False         # Draw results at the end?
     cv_or_mpl = 'mpl'    # Use openCV or matplotlib to render the results?
 
-    for image_number in range(89, 96):
+    for path in os.listdir('imgs/'):
 
         # Load the test image
-        path = '../data/m7/IMG_02' + str(image_number) + '.JPG'
+        #path = '../data/m7/IMG_02' + str(image_number) + '.JPG'
         # path = '../data/m7/IMG_0291.JPG'
-        img = cv2.imread(path, cv2.CV_LOAD_IMAGE_COLOR)
+        img = cv2.imread('imgs/' + path, cv2.CV_LOAD_IMAGE_COLOR)
 
         # Do a clockwise sort on the points
         def cw_sort(points):
@@ -79,4 +80,4 @@ if __name__ == "__main__":
                 plt.imshow(ortho)
                 plt.show()
         
-        cv2.imwrite('orthographic/' + str(image_number) + '.jpg', ortho)
+        cv2.imwrite('FOO-' + path, ortho)

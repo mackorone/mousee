@@ -91,7 +91,8 @@ def extract_walls(img):
 # Demo
 if __name__ == '__main__':
 
-    image_path = 'topdown_cropped.jpg'
+    #image_path = 'topdown_cropped.jpg'
+    image_path = '3.JPG'
     img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
 
     # We need a sparate image to draw on

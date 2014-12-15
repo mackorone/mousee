@@ -116,7 +116,7 @@ def hough_lines(img):
 
     # Grouping tolerance for each of the parameters
     rho_tolerance = 30 # pixel distance
-    theta_tolerance = np.pi / 30.0 # radians
+    theta_tolerance = np.pi / 4.0 # radians # TODO: 30.0
 
     # Create the groups of lines
     line_groups = []
@@ -158,9 +158,11 @@ def hough_lines(img):
 
 # Demo
 if __name__ == '__main__':
-    image_path = '../data/m7/IMG_0296.JPG'
+    #image_path = '../data/m7/IMG_0290.JPG'
+    image_path = '3.JPG'
     color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
     lines = hough_lines(color_img)
     color_img = draw_rho_theta_lines(lines, color_img, (0,255,0))
-    cv2.imshow('Hough', color_img)
-    cv2.waitKey()
+    cv2.imwrite('Hough.jpg', color_img)
+    #cv2.imshow('Hough', color_img)
+    #cv2.waitKey()
