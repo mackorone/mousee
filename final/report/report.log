@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  16 DEC 2014 12:11
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  16 DEC 2014 15:28
 entering extended mode
-**D:/Users/Scott/Documents/GitHub/mousee/final/cvpr2014AuthorKit/latex/report.t
-ex
+**C:/Users/Scott/Google*Drive/School*Docs/CSE/CSE473/final/mousee/final/report/
+report.tex
 
-(D:/Users/Scott/Documents/GitHub/mousee/final/cvpr2014AuthorKit/latex/report.te
-x
+("C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/report/
+report.tex"
 LaTeX2e <2014/05/01>
 Babel <3.9l> and hyphenation patterns for 68 languages loaded.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
@@ -24,21 +24,48 @@ File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\cvpr.sty
-(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\eso-pic.s
-ty
-Package: eso-pic 2002/11/16 v1.1b eso-pic (RN)
+("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
+cvpr.sty" ("C:\Program Files\MiKTeX 2.9\tex\latex\eso-pic\eso-pic.sty"
+Package: eso-pic 2013/10/06 v2.0d eso-pic (RN)
 
-(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\cvpr_eso.
-sty
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\atbegshi.sty"
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 
-LaTeX Warning: You have requested package `eso-pic',
-               but the package provides `everyshi'.
-
-Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
 Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+\Gread@gobject=\count87
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 ))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\xspace.sty"
 Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
@@ -47,15 +74,15 @@ CVPR 8.5 x 11-Inch Proceedings Style `cvpr.sty'.
 \@ctmp=\skip43
 \@figindent=\skip44
 \cvprrulerbox=\box26
-\cvprrulercount=\count87
+\cvprrulercount=\count88
 \cvprruleroffset=\dimen103
 \cv@lineheight=\dimen104
 \cv@boxheight=\dimen105
 \cv@tmpbox=\box27
-\cv@refno=\count88
-\cv@tot=\count89
-\cv@tmpc@=\count90
-\cv@tmpc=\count91
+\cv@refno=\count89
+\cv@tot=\count90
+\cv@tmpc@=\count91
+\cv@tmpc=\count92
 ) ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\times.sty"
 Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
 )
@@ -75,18 +102,7 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count92
-))
 \Gin@req@height=\dimen106
 \Gin@req@width=\dimen107
 )
@@ -178,8 +194,7 @@ Package ifluatex Info: LuaTeX not detected.
 Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -205,7 +220,7 @@ Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
 Package: xcolor-patch 2011/01/30 xcolor patch
 Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
-Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package hobsub Info: Skipping package `atbegshi' (already loaded).
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 )
@@ -278,8 +293,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip48
 )
-(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\report.au
-x)
+("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
+report.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
@@ -298,20 +313,13 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 25.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
-ABD: EveryShipout initializing macros
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\color.sty"
-Package: color 2014/04/23 v1.1a Standard LaTeX Color (DPC)
+\AtBeginShipoutBox=\box30
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package color Info: Driver file: pdftex.def on input line 137.
-)
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count115
 \scratchdimen=\dimen123
-\scratchbox=\box30
+\scratchbox=\box31
 \nofMPsegments=\count116
 \nofMParguments=\count117
 \everyMPshowfont=\toks20
@@ -321,8 +329,6 @@ Package color Info: Driver file: pdftex.def on input line 137.
 \makeMPintoPDFobject=\count120
 \everyMPtoPDFconversion=\toks21
 )
-\AtBeginShipoutBox=\box31
-Package atbegshi Info: Package `everyshi' patched.
 Package hyperref Info: Link coloring OFF on input line 25.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -336,66 +342,99 @@ LaTeX Info: Redefining \ref on input line 25.
 LaTeX Info: Redefining \pageref on input line 25.
 LaTeX Info: Redefining \nameref on input line 25.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 47.
-LaTeX Font Info:    Try loading font information for U+msa on input line 47.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
+LaTeX Font Info:    Try loading font information for U+msa on input line 36.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 47.
+LaTeX Font Info:    Try loading font information for U+msb on input line 36.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 47.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 36.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 38.
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--74
+Underfull \hbox (badness 10000) in paragraph at lines 59--63
 []\OT1/ptm/m/n/10 In or-der to lessen the bur-den of con-struct-ing
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 75.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 64.
+<maze_and_mouse.jpg, id=3, 1927.2pt x 1084.05pt>
+File: maze_and_mouse.jpg Graphic file (type jpg)
+ <use maze_and_mouse.jpg>
+Package pdftex.def Info: maze_and_mouse.jpg used on input line 79.
+(pdftex.def)             Requested size: 189.70947pt x 106.7076pt.
+
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 123.
+ <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/report/
+maze_and_mouse.jpg>]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 121.
 
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 123.
- [2]
-(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\report.bb
-l)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 201.
- [3
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 121.
+
+<../../src/imgs/one.jpg, id=32, 1156.32pt x 757.83125pt>
+File: ../../src/imgs/one.jpg Graphic file (type jpg)
+
+<use ../../src/imgs/one.jpg>
+Package pdftex.def Info: ../../src/imgs/one.jpg used on input line 160.
+(pdftex.def)             Requested size: 189.70947pt x 124.33138pt.
+
+<../../src/imgs/three.jpg, id=33, 1454.43375pt x 877.2775pt>
+File: ../../src/imgs/three.jpg Graphic file (type jpg)
+
+<use ../../src/imgs/three.jpg>
+Package pdftex.def Info: ../../src/imgs/three.jpg used on input line 161.
+(pdftex.def)             Requested size: 189.70947pt x 114.42488pt.
+
+Underfull \hbox (badness 1005) in paragraph at lines 167--174
+[]\OT1/ptm/m/n/10 After ob-tain-ing a set of stitched im-ages, we be-gin
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 167--174
+
+ []
+
+[2]
+("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
+report.bbl" [3 <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee
+/src/imgs/one.jpg> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mo
+usee/src/imgs/three.jpg>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 249.
+ [4
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 201.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 249.
 
-(D:\Users\Scott\Documents\GitHub\mousee\final\cvpr2014AuthorKit\latex\report.au
-x)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 201.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 201.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 201.
+("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
+report.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 249.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 249.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 249.
  ) 
 Here is how much of TeX's memory you used:
- 6216 strings out of 493705
- 89118 string characters out of 3144569
- 178437 words of memory out of 3000000
- 9412 multiletter control sequences out of 15000+200000
+ 6656 strings out of 493705
+ 94286 string characters out of 3144569
+ 187177 words of memory out of 3000000
+ 9832 multiletter control sequences out of 15000+200000
  28057 words of font info for 67 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 34i,9n,26p,323b,399s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,9n,39p,299b,476s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/font
@@ -403,9 +442,9 @@ s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
 urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8
 a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (3 pages, 100021 bytes).
+Output written on report.pdf (4 pages, 795561 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 41 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
