@@ -41,33 +41,38 @@ def intersection_within_image(line1, line2, img_shape):
 # Removes lines that shouldn't belong to a group (i.e. intersect with other lines)
 def filter_incorrect_lines(line_group, img_shape):
     line_set = set(line_group)
-    intersections = {}
+    intersections = {} # A list of lines intersecting with each line
     for i in range(len(line_group)):
         for j in range(len(line_group)):
             if i == j:
                 continue
             if intersection_within_image(line_group[i], line_group[j], img_shape):
                 if line_group[i] in intersections:
-                    intersections[line_group[i]] += 1
+                    intersections[line_group[i]].append(line_group[j])
                 else:
-                    intersections[line_group[i]] = 1
+                    intersections[line_group[i]] = [line_group[j]]
     if len(intersections) > 0:
         # If there is a sole max, remove it
-        max_val = max(intersections.values())
-        maxs = [item for item in intersections if intersections[item] == max_val]
+        max_val = max([len(lst) for lst in intersections.values()])
+        maxs = [item for item in intersections if len(intersections[item]) == max_val]
         if len(maxs) == 1:
             line_set.remove(max(intersections, key = intersections.get))
             return filter_incorrect_lines(list(line_set), img_shape)
         else:
-            # remove all of the max values, average, and then run this again
             for line in maxs:
                 line_set.remove(line)
-            ave_x_1 = int(np.mean([z[0][0] for z in maxs]))
-            ave_y_1 = int(np.mean([z[0][1] for z in maxs]))
-            ave_x_2 = int(np.mean([z[1][0] for z in maxs]))
-            ave_y_2 = int(np.mean([z[1][1] for z in maxs]))
-            new_line = ((ave_x_1, ave_y_1), (ave_x_2, ave_y_2))
-            line_set.add(new_line)
+                if line in intersections:
+                    intersections[line].append(line) # Easy way to ensure the line is averaged
+                    # Add the average of everything this line intersects with
+                    ave_x_1 = int(np.mean([z[0][0] for z in intersections[line]]))
+                    ave_y_1 = int(np.mean([z[0][1] for z in intersections[line]]))
+                    ave_x_2 = int(np.mean([z[1][0] for z in intersections[line]]))
+                    ave_y_2 = int(np.mean([z[1][1] for z in intersections[line]]))
+                    new_line = ((ave_x_1, ave_y_1), (ave_x_2, ave_y_2))
+                    line_set.add(new_line)
+                    # Ensure we don't count lines twice
+                    for z in intersections[line]:
+                        del intersections[z]
             return filter_incorrect_lines(list(line_set), img_shape)
     return line_group
     

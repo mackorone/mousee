@@ -40,22 +40,23 @@ def extract_walls(img):
     upper_red = np.array([10,255,255])
 
     # Window parameters
-    win_offset = 15 # Offset from the vertex enpoints (so as to not include other walls)
+    win_offset = 25 # Offset from the vertex enpoints (so as to not include other walls)
     win_size = 25 # Height in the horizontal, width in the vertical
+    thresh = 750
 
     def horizontal_wall_exists(img, left, right):
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         y = int((left[1] + right[1])/2)
         window = hsv[max(y-win_size, 0):min(y+win_size, np.shape(img)[0]), left[0]+win_offset:right[0]-win_offset, :]
         red_mask = cv2.inRange(window, lower_red, upper_red)
-        return sum(sum(red_mask)) > 500
+        return sum(sum(red_mask)) > thresh
 
     def vertical_wall_exists(img, top, bottom):
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
         x = int((top[0] + bottom[0])/2)
         window = hsv[top[1]+win_offset:bottom[1]-win_offset, max(x-win_size,0):min(x+win_size, np.shape(img)[1]), :]
         red_mask = cv2.inRange(window, lower_red, upper_red)
-        return sum(sum(red_mask)) > 500
+        return sum(sum(red_mask)) > thresh
 
     # 2D array of the wall values, rows and cols indexed like a matrix, NESW order for the walls
     walls = [[[0,0,0,0] for i in range(maze_width)] for j in range(maze_height)]
@@ -78,6 +79,8 @@ def extract_walls(img):
             if horizontal_wall_exists(img, rows[i][j], rows[i][j+1]):
                 walls[i-1][j][2] = 1
                 walls[i][j][0] = 1
+                center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
+                cv2.circle(img, center, 8, (0, 0, 255), -1)
 
     # Check all pairs of points along the vertical
     for j in range(1, len(rows[0])-1):
@@ -85,6 +88,10 @@ def extract_walls(img):
             if vertical_wall_exists(img, rows[i][j], rows[i+1][j]):
                 walls[i][j-1][1] = 1
                 walls[i][j][3] = 1
+                center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
+                cv2.circle(img, center, 8, (0, 0, 255), -1)
+
+    cv2.imwrite('asdf.jpg', img)
 
     # Return the rows as well, for drawing purposes
     return walls, rows
@@ -93,7 +100,8 @@ def extract_walls(img):
 if __name__ == '__main__':
 
     # This function should be used on the final, large image
-    image_path = 'imgs/large.jpg'
+    #image_path = 'imgs/large.jpg'
+    image_path = 'final.jpg'
     img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
 
     # We need a sparate image to draw on
@@ -107,20 +115,23 @@ if __name__ == '__main__':
     # Draw the walls
     walls, rows = extract_walls(img)
 
-    # TODO: Show the walls
     # TODO
+    '''
+    # Check all pairs of points along the horizontal
     for i in range(len(rows)):
         for j in range(len(rows[i])-1):
-            if horizontal_wall_exists(img, rows[i][j], rows[i][j+1]):
+            if walls[i-1][j][2] == 1:
                 center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
-                cv2.circle(img, center, 8, (0, 0, 255), -1)
+                cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
 
     # Check all pairs of points along the vertical
     for j in range(len(rows[0])):
         for i in range(len(rows)-1):
-            if vertical_wall_exists(img, rows[i][j], rows[i+1][j]):
+            if walls[i][j-1][3] == 1:
                 center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
-                cv2.circle(img, center, 8, (0, 0, 255), -1)
+                cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+    '''
 
-    cv2.imshow('Walls', draw_img)
-    cv2.waitKey()
+    cv2.imwrite('Walls.jpg', draw_img)
+    #cv2.imshow('Walls', draw_img)
+    #cv2.waitKey()

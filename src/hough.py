@@ -11,7 +11,7 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
 
     for (rho, theta) in lines:
 
-        theta += .001
+        theta += .000001
 
         a = np.cos(theta)
         b = np.sin(theta)
@@ -143,9 +143,8 @@ def hough_lines(img):
 
     # Show each of the groupings, sorted by theta (not necessary)
     show_groups = True
-    if show_groups:
+    if show_groups and __name__ == '__main__':
         for group in sorted(line_groups, key = lambda x: x[0][1]):
-            print group
             copy = color_img.copy()
             copy = draw_rho_theta_lines(group, copy, (0, 0, 255))
             cv2.imshow('houghlines.jpg', copy)
