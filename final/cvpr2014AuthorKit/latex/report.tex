@@ -143,19 +143,19 @@ to real-world engineering challenges, by introducing uneven mazes resembling rea
 suggested using information from cameras for low-level control, steering, and navigation, essentially using cameras as
 sensors instead of infrared and ultrasound, two common sensor variations seen in competitive mice.  In the 2011-12
 academic year, a student team from University of California, San Diego adopted this approach for their implementation
-[].  We stress that our implementation differs fundamentally from that in \cite{Chen1997} and [], in that our approach employs more "global" information to avoid the costly exploration phase of maze solving.
+[].  We stress that our implementation differs fundamentally from that in \cite{Chen1997} and [], in that our approach
+employs more "global" information to avoid the costly exploration phase of maze solving.
 
 \section{Algorithm}
 \label{sec:algorithm}
-
 In this section, we present the proposed method for obtaining maze solutions using information obtained from the
-perspective of the MicroMouse.  Our algorithm is roughly structured as follows:
-
-\begin{enumerate}
-	\item Obtain a panoramic series of images taken from the starting position using a camera mounted at height on top
-	of the Micromouse
-	\item Stitch pairs of images together using a stitching script- for example, for a 6-image set, create 3 images by stitching the first and second images, the third and fourth images, and the fifth and sixth images.
-\end{enumerate}
+perspective of the MicroMouse.  We begin by obtaining a panoramic series of images taken from the starting position
+using a camera mounted at height on top of the Micromouse.  To generate the data to test our method, we used a cell
+phone camera to obtain several image sets taken approximately 6 inches vertically from the maze surface, at the position
+of one of the corners.  Then, we stitch pairs of images together using a stitching script- for example, for a 6-image
+set, create 3 images by stitching the first and second images, the third and fourth images, and the fifth and sixth
+images.  We used a publicly available Github project for this purpose, which can be found at
+\url{https://github.com/cbuntain/stitcher}.
 
 \textit{For each stitched image:}
 \begin{enumerate}
