@@ -116,11 +116,11 @@ if __name__ == '__main__':
             if (i < len(walls)):
                 if walls[i][j][0] == 1:
                     center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
-                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+                    cv2.circle(draw_img, center, 12, (0, 255, 0), -1)
             else:
                 if walls[i-1][j][2] == 1:
                     center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
-                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+                    cv2.circle(draw_img, center, 12, (0, 255, 0), -1)
 
     # Check all pairs of points along the vertical
     for j in range(len(rows[0])):
@@ -128,11 +128,11 @@ if __name__ == '__main__':
             if (j < len(walls[i])):
                 if walls[i][j][3] == 1:
                     center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
-                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+                    cv2.circle(draw_img, center, 12, (0, 255, 0), -1)
             else:
                 if walls[i][j-1][1] == 1:
                     center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
-                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+                    cv2.circle(draw_img, center, 12, (0, 255, 0), -1)
 
     cv2.imshow('Walls', draw_img)
     cv2.waitKey()
