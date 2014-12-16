@@ -62,7 +62,7 @@ Region 1 Micromouse
 Competition) []:
 
 \subsubsection{Rules for the micromouse}
-\label{subsubsec:mouserules}
+\label{ssub:mouserules}
 \begin{enumerate}
 	\item A Micromouse shall be self-contained (no remote controls). A Micromouse shall not use an energy source
 	employing a combustion process.
@@ -84,7 +84,7 @@ Competition) []:
 
 
 \subsubsection{Rules for the maze}
-\label{subsubsec:mazerules}
+\label{ssub:mazerules}
 \begin{enumerate}
 	\item The maze is composed of multiples of an $18\ \textrm{cm} \times 18\ \textrm{cm}$ unit square. The maze
        comprises $16 \times 16$ unit squares. The walls of the maze are $5\ \textrm{cm}$ high and $1.2\ \textrm{cm}$
@@ -118,7 +118,7 @@ mouse capable of reaching the center of a maze meeting the above specifications:
 
 A less-popular method is the so-called "wall-follower" approach, which seeks to eventually reach the center of the maze
 by simply moving along a given wall for its entire length.  This is not guaranteed to be effective for all possible maze
-structures, and is officially discouraged by the competition organizers (see \textsection\ref{subsubsec:mazerules}).
+structures, and is officially discouraged by the competition organizers (see \textsection\ref{ssub:mazerules}).
 
 \subsection{Our Solution}
 \label{sub:oursolution}
@@ -214,14 +214,17 @@ graph-theoretic methods, and the mouse can consequently solve the maze.
 
 \section{Results}
 \label{sec:results}
+
 We implemented our algorithm using the Python language along with the OpenCV, NumPy, and matplotlib packages for
-computer vision and image processing, and numerical computation, respectively.
+computer vision and image processing, and numerical computation, respectively.  We chose this platform over MATLAB and
+C++ (which also has support for OpenCV) to reduce implementation time, in order to be able to devote more effort to
+high-level algorithmic development.  Also, the flexibility of Python in comparison to MATLAB for performing 
+"non-numerical" tasks such as file input and output and project management made it a natural choice.
 
 \subsection{Output images}
 \label{sub:output_images}
 
-\subsection{Runtime Analysis}
-\label{sub:runtime_analysis}
+In this section, we present several images representative of the output of our algorithm at various stages of execution.
 
 
 \section{Discussion}
@@ -234,12 +237,24 @@ with enough infor
 \subsection{Earlier Solution Attempts}
 \label{sub:earlierattempts}
 
-Our first attempt at a solution to this problem consisted of 
+Our first attempt at a solution to this problem consisted of using trigonometric information to obtain an orthographic projection 
 
 \subsection{Difficulties Encountered}
 \label{sub:difficulties}
+\begin{itemize}
+	\item SIFT matching not working (trying to perform image stitching ourselves)
+	\item Trying to manually retrieve an orthographic projection in 2 dimensions
+	\item Finding a way to get the corners of the smallest square in a consistent order to use in the homography
+	transformation
+	\item Finding a good way to reduce the number of Hough lines down to a simple grid
+\end{itemize}
+
 \subsection{Future Work}
 \label{sub:futurework}
+\begin{itemize}
+	\item Implement the software on a working Micromouse
+	\item Learning how to use real camera data, which may not be as good as what we were able to achieve here
+\end{itemize}
 
 {\small
 \bibliographystyle{ieee}
