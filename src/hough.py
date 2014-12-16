@@ -142,7 +142,7 @@ def hough_lines(img):
         putLineInGroup(line)
 
     # Show each of the groupings, sorted by theta (not necessary)
-    show_groups = True
+    show_groups = False
     if show_groups and __name__ == '__main__':
         for group in sorted(line_groups, key = lambda x: x[0][1]):
             copy = color_img.copy()

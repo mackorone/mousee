@@ -61,26 +61,12 @@ def extract_walls(img):
     # 2D array of the wall values, rows and cols indexed like a matrix, NESW order for the walls
     walls = [[[0,0,0,0] for i in range(maze_width)] for j in range(maze_height)]
 
-    # Initialize the outer walls
-    for r in range(len(walls)):
-        for c in range(len(walls[r])):
-            if r == 0:
-                walls[r][c][0] = 1
-            if c == 0:
-                walls[r][c][3] = 1
-            if r == maze_height-1:
-                walls[r][c][2] = 1
-            if c == maze_width-1:
-                walls[r][c][1] = 1
-
     # Check all pairs of points along the horizonal
     for i in range(1, len(rows)-1):
         for j in range(len(rows[i])-1):
             if horizontal_wall_exists(img, rows[i][j], rows[i][j+1]):
                 walls[i-1][j][2] = 1
                 walls[i][j][0] = 1
-                center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
-                cv2.circle(img, center, 8, (0, 0, 255), -1)
 
     # Check all pairs of points along the vertical
     for j in range(1, len(rows[0])-1):
@@ -88,10 +74,20 @@ def extract_walls(img):
             if vertical_wall_exists(img, rows[i][j], rows[i+1][j]):
                 walls[i][j-1][1] = 1
                 walls[i][j][3] = 1
-                center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
-                cv2.circle(img, center, 8, (0, 0, 255), -1)
 
-    cv2.imwrite('asdf.jpg', img)
+    # Optionally assign outer walls to the correct value
+    assign_outer_walls = True
+    if assign_outer_walls:
+        for r in range(len(walls)):
+            for c in range(len(walls[r])):
+                if r == 0:
+                    walls[r][c][0] = 1
+                if c == 0:
+                    walls[r][c][3] = 1
+                if r == maze_height-1:
+                    walls[r][c][2] = 1
+                if c == maze_width-1:
+                    walls[r][c][1] = 1
 
     # Return the rows as well, for drawing purposes
     return walls, rows
@@ -100,8 +96,7 @@ def extract_walls(img):
 if __name__ == '__main__':
 
     # This function should be used on the final, large image
-    #image_path = 'imgs/large.jpg'
-    image_path = 'final.jpg'
+    image_path = 'imgs/final.jpg'
     img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
 
     # We need a sparate image to draw on
@@ -115,23 +110,29 @@ if __name__ == '__main__':
     # Draw the walls
     walls, rows = extract_walls(img)
 
-    # TODO
-    '''
     # Check all pairs of points along the horizontal
     for i in range(len(rows)):
         for j in range(len(rows[i])-1):
-            if walls[i-1][j][2] == 1:
-                center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
-                cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+            if (i < len(walls)):
+                if walls[i][j][0] == 1:
+                    center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
+                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+            else:
+                if walls[i-1][j][2] == 1:
+                    center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
+                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
 
     # Check all pairs of points along the vertical
     for j in range(len(rows[0])):
         for i in range(len(rows)-1):
-            if walls[i][j-1][3] == 1:
-                center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
-                cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
-    '''
+            if (j < len(walls[i])):
+                if walls[i][j][3] == 1:
+                    center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
+                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
+            else:
+                if walls[i][j-1][1] == 1:
+                    center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
+                    cv2.circle(draw_img, center, 8, (0, 0, 255), -1)
 
-    cv2.imwrite('Walls.jpg', draw_img)
-    #cv2.imshow('Walls', draw_img)
-    #cv2.waitKey()
+    cv2.imshow('Walls', draw_img)
+    cv2.waitKey()

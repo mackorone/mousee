@@ -65,8 +65,6 @@ final_img = stitch(ortho_imgs[0], ortho_imgs[1])
 for ortho in ortho_imgs[2:]:
     final_img = stitch(final_img, ortho)
 
-cv2.imwrite('final.jpg', final_img)
-    
 # Do the wall detection and write to output_file
 print 'Detecting walls...'
 walls, rows = extract_walls(final_img)
