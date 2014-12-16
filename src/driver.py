@@ -69,3 +69,4 @@ for ortho in ortho_imgs[2:]:
 print 'Detecting walls...'
 walls = extract_walls(final_img)
 print walls
+print 'DONE'

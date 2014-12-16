@@ -2,25 +2,6 @@ import cv2
 import numpy as np
 from skeleton import *
 
-# Groups lines that are within a certain distance of each other
-# This is mostly used for extracting walls in the composite image
-def group_rho_theta_lines(lines, rho_dist, theta_dist):
-    pairs = []
-    line_set = set(lines)
-    for i in range(len(lines)):
-        for j in range(i+1, len(lines)):
-            rho0, theta0 = lines[i]
-            rho1, theta1 = lines[j]
-            if (abs(rho0 - rho1) < rho_dist and abs(theta0 - theta1) < theta_dist):
-                pairs.append((lines[i], lines[j]))
-    for p in pairs:
-        for i in [0,1]:
-            if p[i] in line_set:
-                line_set.remove(p[i])
-        # Something better than averaging???
-        line_set.add(((p[0][0] + p[1][0])/2., (p[0][1] + p[1][1])/2.))
-    return list(line_set)
-
 # Converts rho-theta lines to x1y1-x2y2 lines. We use the size of the image so
 # as to ensure the endpoints of the seqments do not exceed the image edges 
 def rho_theta_to_x1y1_x2y2(lines, img_shape):
@@ -37,11 +18,12 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
 
         # Theta is oriented as follows:
         #
-        #  (0,0)--------->
+        #  (0,0)---------> x
         #    | \ theta
         #    |  \
         #    |   \
         #    V    \
+        #    y
         #
         # And the "quadrants" can be labeled as follows:
         #
@@ -101,6 +83,42 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
 
         output.append(((x1,y1),(x2,y2)))
 
+    return output
+
+# Taken from:
+# http://stackoverflow.com/questions/849211/shortest-distance-between-a-point-and-a-line-segment
+def perpendicular_dist_to_origin(x1,y1,x2,y2):
+    pass
+'''
+float minimum_distance(vec2 v, vec2 w, vec2 p) {
+  // Return minimum distance between line segment vw and point p
+  const float l2 = length_squared(v, w);  // i.e. |w-v|^2 -  avoid a sqrt
+  if (l2 == 0.0) return distance(p, v);   // v == w case
+  // Consider the line extending the segment, parameterized as v + t (w - v).
+  // We find projection of point p onto the line. 
+  // It falls where t = [(p-v) . (w-v)] / |w-v|^2
+  const float t = dot(p - v, w - v) / l2;
+  if (t < 0.0) return distance(p, v);       // Beyond the 'v' end of the segment
+  else if (t > 1.0) return distance(p, w);  // Beyond the 'w' end of the segment
+  const vec2 projection = v + t * (w - v);  // Projection falls on the segment
+  return distance(p, projection);
+}
+'''
+
+# Converts x1y1-x2y2 lines to rho-theta lines
+def x1y1_x2y2_to_rho_theta(lines):
+    output = []
+    for line in lines:
+        x1,y1 = line[0]
+        x2,y2 = line[1]
+        if (x1 > x2):
+            x1,x2 = x2,x1
+            y1,y2 = y2,y1
+        dy = y2-y1
+        dx = x2-x1
+        theta = np.arctan2(dy, dx) - np.pi/2
+        rho = perpendicular_dist_to_origin(x1,y1,x2,y2)
+        output.append((rho, theta))
     return output
 
 # Draws rho-theta lines on an image, where color is (b, g, r)
@@ -169,7 +187,7 @@ def hough_lines(img):
 
     # TODO: Can we re-center the lines? Sometimes they're a little off
     # TODO: This needs to be improved ...
-
+    
     # Get the average for each group
     ave_lines = [(np.mean([x[0] for x in group]), np.mean([x[1] for x in group]))
                 for group in line_groups if len(group) > 1]

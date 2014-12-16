@@ -36,6 +36,11 @@ def intersection_within_image(line1, line2, img_shape):
         return False
     return True
 
+def filter_incorrect_lines(line_group, imshape):
+    # TODO: interate through, find intersections... 
+    return line_group
+    
+
 # Split the lines into two groups, based on the fact that intersecting lines should
 # not be in the same group. We intermediately use sets to perform set subtraction.
 def get_groups_of_lines(x_y_lines, img_shape):
@@ -56,6 +61,9 @@ def get_groups_of_lines(x_y_lines, img_shape):
             group1.add(x)
         for y in addTo2:
             group2.add(y)
+    # Get rid of lines that don't belong
+    group1 = filter_incorrect_lines(list(group1), img_shape)
+    group2 = filter_incorrect_lines(list(group2))
     return list(group1), list(group2)
 
 def get_square(img):
@@ -104,7 +112,7 @@ def get_square(img):
 if __name__ == '__main__':
 
     # Specify the image path and get the color image
-    image_path = '../data/m7/IMG_0290.JPG'
+    image_path = '../data/m7/IMG_0295.JPG'
     color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
     lines = rho_theta_to_x1y1_x2y2(hough_lines(color_img), np.shape(color_img))
     group1, group2 = get_groups_of_lines(lines, np.shape(color_img))

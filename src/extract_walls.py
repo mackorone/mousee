@@ -6,15 +6,24 @@ from get_square import *
 def get_intersection_points(img):
 
     # Note that we group here again to ensure we the correct amount of lines
-    ave_lines = group_rho_theta_lines(hough_lines(img), 100, np.pi/20)
+    ave_lines = hough_lines(img)
     xy_lines = rho_theta_to_x1y1_x2y2(ave_lines, np.shape(img))
     group1, group2 = get_groups_of_lines(xy_lines, np.shape(img))
+
+    # TODO: We expect lines to be horizontal and vertical here...
 
     points = []
     for i in range(len(group1)):
         for j in range(len(group2)):
             if (intersection_within_image(group1[i], group2[j], np.shape(img))):
                 points.append(line_intersection(group1[i], group2[j]))
+
+    # TODO: Get rid of this
+    img = draw_x1y1_x2y2_lines(group1, img, (0,255,0))
+    img = draw_x1y1_x2y2_lines(group2, img, (255,0,0))
+    for p in points:
+        cv2.circle(img, p, 8, (0, 255, 0), -1)
+    cv2.imwrite('Walls.jpg', img)
 
     return points
 
@@ -46,9 +55,6 @@ def extract_walls(img):
         y = int((left[1] + right[1])/2)
         window = hsv[max(y-win_size, 0):min(y+win_size, np.shape(img)[0]), left[0]+win_offset:right[0]-win_offset, :]
         red_mask = cv2.inRange(window, lower_red, upper_red)
-        cv2.imshow('asdf', red_mask)
-        cv2.waitKey() # TODO
-        # TODO large discrepancy??? Still fixing this...
         return sum(sum(red_mask)) > 500
 
     def vertical_wall_exists(img, top, bottom):
@@ -105,10 +111,13 @@ if __name__ == '__main__':
     points = get_intersection_points(img)
     for p in points:
         cv2.circle(draw_img, p, 8, (0, 255, 0), -1)
+    # TODO: Get rid of this
+    cv2.imshow('Walls', draw_img)
+    cv2.waitKey()
 
     # Draw the walls
     walls = extract_walls(img)
-    print walls
+    #print walls
 
     cv2.imshow('Walls', draw_img)
     cv2.waitKey()
