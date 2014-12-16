@@ -76,8 +76,8 @@ def match():
     # temp = cv2.imread(sys.argv[2])
 
     # Load data images in coloe
-    img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
-    temp = cv2.imread('../data/m7/IMG_0292.JPG', cv2.CV_LOAD_IMAGE_COLOR)
+    img = cv2.imread('../../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
+    temp = cv2.imread('../../data/m7/IMG_0292.JPG', cv2.CV_LOAD_IMAGE_COLOR)
 
     # Look for a 'dist' parameter in arguments- if not, default to 200
     # (not sure what dist is actually doing)

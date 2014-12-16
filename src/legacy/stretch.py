@@ -24,7 +24,7 @@ big_theta = math.atan(view_distance/camera_height) # Angle between the vertical 
 lil_theta = math.atan(unseen_length/camera_height) # Angle between the vertical and line connecting the camera to the rightmost point
                   
 # Input image
-img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR) # TODO: Modularize this
+img = cv2.imread('../../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR) # TODO: Modularize this
 img_num_rows = np.shape(img)[0]
 img_num_cols = np.shape(img)[1]
 

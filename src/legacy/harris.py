@@ -11,7 +11,7 @@ import numpy as np
 cv2.destroyAllWindows()
 
 # Read in the target image
-filename = '../data/m7/IMG_0290.JPG'
+filename = '../../data/m7/IMG_0290.JPG'
 img = cv2.imread(filename)
 
 # Convert BGR to HSV

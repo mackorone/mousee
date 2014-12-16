@@ -57,39 +57,34 @@ def extract_walls(img):
         red_mask = cv2.inRange(window, lower_red, upper_red)
         return sum(sum(red_mask)) > 500
 
-    # 2D array of the wall values
+    # 2D array of the wall values, rows and cols indexed like a matrix, NESW order for the walls
     walls = [[[0,0,0,0] for i in range(maze_width)] for j in range(maze_height)]
 
     # Initialize the outer walls
+    for r in range(len(walls)):
+        for c in range(len(walls[r])):
+            if r == 0:
+                walls[r][c][0] = 1
+            if c == 0:
+                walls[r][c][3] = 1
+            if r == maze_height-1:
+                walls[r][c][2] = 1
+            if c == maze_width-1:
+                walls[r][c][1] = 1
 
     # Check all pairs of points along the horizonal
-    for i in range(len(rows)): # TODO: The indices can be changed
-        for j in range(len(rows[i])-1): # TODO: The indices can be changed
+    for i in range(1, len(rows)-1):
+        for j in range(len(rows[i])-1):
             if horizontal_wall_exists(img, rows[i][j], rows[i][j+1]):
-                # TODO: Delete this
-                '''
-                center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
-                cv2.circle(img, center, 8, (0, 0, 255), -1)
-                '''
-                pass
-                # TODO: Add to walls
+                walls[i-1][j][2] = 1
+                walls[i][j][0] = 1
 
     # Check all pairs of points along the vertical
-    for j in range(len(rows[0])): # TODO: The indices can be changed
-        for i in range(len(rows)-1): # TODO: The indices can be changed
+    for j in range(1, len(rows[0])-1):
+        for i in range(len(rows)-1):
             if vertical_wall_exists(img, rows[i][j], rows[i+1][j]):
-                # TODO: Delete this
-                '''
-                center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
-                cv2.circle(img, center, 8, (0, 0, 255), -1)
-                '''
-                pass
-                # TODO: Add to walls
-    # TODO: Delete this
-    '''
-    cv2.imshow('Walls', img)
-    cv2.waitKey()
-    '''
+                walls[i][j-1][1] = 1
+                walls[i][j][3] = 1
 
     # Return the rows as well, for drawing purposes
     return walls, rows

@@ -68,6 +68,13 @@ for ortho in ortho_imgs[2:]:
 # Do the wall detection
 print 'Detecting walls...'
 cv2.imwrite('final.jpg', final_img)
-walls = extract_walls(final_img)
-print walls
-print 'DONE'
+walls, rows = extract_walls(final_img)
+outfile = open(output_file, 'w')
+for r in range(len(walls)):
+    for c in range(len(walls[r])):
+        string = (str(r) + ' ' + str(c) + ' ' + str(walls[r][c][0]) + ' ' + str(walls[r][c][1])
+                                        + ' ' + str(walls[r][c][2]) + ' ' + str(walls[r][c][3]))
+        print >> outfile, string
+outfile.close()
+
+print 'Finished - results are located in "' + output_file + '"'

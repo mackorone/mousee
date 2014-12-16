@@ -11,6 +11,8 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
 
     for (rho, theta) in lines:
 
+        theta += .001
+
         a = np.cos(theta)
         b = np.sin(theta)
         x0 = a*rho
@@ -140,7 +142,7 @@ def hough_lines(img):
         putLineInGroup(line)
 
     # Show each of the groupings, sorted by theta (not necessary)
-    show_groups = False
+    show_groups = True
     if show_groups:
         for group in sorted(line_groups, key = lambda x: x[0][1]):
             print group

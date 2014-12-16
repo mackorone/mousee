@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pylab as plt
 
 # Load one of the test images
-img = cv2.imread('../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
+img = cv2.imread('../../data/m7/IMG_0290.JPG', cv2.CV_LOAD_IMAGE_COLOR)
 
 # Coordinates of the square from the perspective image
 topleft = [416, 207]
