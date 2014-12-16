@@ -85,42 +85,6 @@ def rho_theta_to_x1y1_x2y2(lines, img_shape):
 
     return output
 
-# Taken from:
-# http://stackoverflow.com/questions/849211/shortest-distance-between-a-point-and-a-line-segment
-def perpendicular_dist_to_origin(x1,y1,x2,y2):
-    pass
-'''
-float minimum_distance(vec2 v, vec2 w, vec2 p) {
-  // Return minimum distance between line segment vw and point p
-  const float l2 = length_squared(v, w);  // i.e. |w-v|^2 -  avoid a sqrt
-  if (l2 == 0.0) return distance(p, v);   // v == w case
-  // Consider the line extending the segment, parameterized as v + t (w - v).
-  // We find projection of point p onto the line. 
-  // It falls where t = [(p-v) . (w-v)] / |w-v|^2
-  const float t = dot(p - v, w - v) / l2;
-  if (t < 0.0) return distance(p, v);       // Beyond the 'v' end of the segment
-  else if (t > 1.0) return distance(p, w);  // Beyond the 'w' end of the segment
-  const vec2 projection = v + t * (w - v);  // Projection falls on the segment
-  return distance(p, projection);
-}
-'''
-
-# Converts x1y1-x2y2 lines to rho-theta lines
-def x1y1_x2y2_to_rho_theta(lines):
-    output = []
-    for line in lines:
-        x1,y1 = line[0]
-        x2,y2 = line[1]
-        if (x1 > x2):
-            x1,x2 = x2,x1
-            y1,y2 = y2,y1
-        dy = y2-y1
-        dx = x2-x1
-        theta = np.arctan2(dy, dx) - np.pi/2
-        rho = perpendicular_dist_to_origin(x1,y1,x2,y2)
-        output.append((rho, theta))
-    return output
-
 # Draws rho-theta lines on an image, where color is (b, g, r)
 def draw_rho_theta_lines(lines, img, color):
     new_img = img.copy()

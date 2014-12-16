@@ -5,25 +5,18 @@ from get_square import *
 
 def get_intersection_points(img):
 
-    # Note that we group here again to ensure we the correct amount of lines
+    # Group here again to ensure we the correct amount of lines
     ave_lines = hough_lines(img)
     xy_lines = rho_theta_to_x1y1_x2y2(ave_lines, np.shape(img))
-    group1, group2 = get_groups_of_lines(xy_lines, np.shape(img))
+    group1, group2 = get_groups_of_lines(xy_lines, np.shape(img), True) # Filter incorrect lines
 
-    # TODO: We expect lines to be horizontal and vertical here...
+    # Note: We expect lines to be perfect here (i.e. no extra lines), thus we filter
 
     points = []
     for i in range(len(group1)):
         for j in range(len(group2)):
             if (intersection_within_image(group1[i], group2[j], np.shape(img))):
                 points.append(line_intersection(group1[i], group2[j]))
-
-    # TODO: Get rid of this
-    img = draw_x1y1_x2y2_lines(group1, img, (0,255,0))
-    img = draw_x1y1_x2y2_lines(group2, img, (255,0,0))
-    for p in points:
-        cv2.circle(img, p, 8, (0, 255, 0), -1)
-    cv2.imwrite('Walls.jpg', img)
 
     return points
 
@@ -67,6 +60,8 @@ def extract_walls(img):
     # 2D array of the wall values
     walls = [[[0,0,0,0] for i in range(maze_width)] for j in range(maze_height)]
 
+    # Initialize the outer walls
+
     # Check all pairs of points along the horizonal
     for i in range(len(rows)): # TODO: The indices can be changed
         for j in range(len(rows[i])-1): # TODO: The indices can be changed
@@ -96,12 +91,14 @@ def extract_walls(img):
     cv2.waitKey()
     '''
 
-    return walls
+    # Return the rows as well, for drawing purposes
+    return walls, rows
 
 # Demo
 if __name__ == '__main__':
 
-    image_path = 'topdown_cropped.jpg'
+    # This function should be used on the final, large image
+    image_path = 'imgs/large.jpg'
     img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
 
     # We need a sparate image to draw on
@@ -110,14 +107,25 @@ if __name__ == '__main__':
     # Draw the corners
     points = get_intersection_points(img)
     for p in points:
-        cv2.circle(draw_img, p, 8, (0, 255, 0), -1)
-    # TODO: Get rid of this
-    cv2.imshow('Walls', draw_img)
-    cv2.waitKey()
+        cv2.circle(draw_img, p, 8, (255, 0, 0), -1)
 
     # Draw the walls
-    walls = extract_walls(img)
-    #print walls
+    walls, rows = extract_walls(img)
+
+    # TODO: Show the walls
+    # TODO
+    for i in range(len(rows)):
+        for j in range(len(rows[i])-1):
+            if horizontal_wall_exists(img, rows[i][j], rows[i][j+1]):
+                center = ((rows[i][j][0] + rows[i][j+1][0])/2, (rows[i][j][1] + rows[i][j+1][1])/2)
+                cv2.circle(img, center, 8, (0, 0, 255), -1)
+
+    # Check all pairs of points along the vertical
+    for j in range(len(rows[0])):
+        for i in range(len(rows)-1):
+            if vertical_wall_exists(img, rows[i][j], rows[i+1][j]):
+                center = ((rows[i][j][0] + rows[i+1][j][0])/2, (rows[i][j][1] + rows[i+1][j][1])/2)
+                cv2.circle(img, center, 8, (0, 0, 255), -1)
 
     cv2.imshow('Walls', draw_img)
     cv2.waitKey()

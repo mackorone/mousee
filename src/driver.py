@@ -67,6 +67,7 @@ for ortho in ortho_imgs[2:]:
     
 # Do the wall detection
 print 'Detecting walls...'
+cv2.imwrite('final.jpg', final_img)
 walls = extract_walls(final_img)
 print walls
 print 'DONE'

@@ -28,22 +28,53 @@ def line_intersection(line1, line2):
 def intersection_within_image(line1, line2, img_shape):
     num_rows = img_shape[0]
     num_cols = img_shape[1]
-    point = line_intersection(line1, line2)
-    # What about parallel lines???
+    try:
+        point = line_intersection(line1, line2)
+    except: # If there's an error, the lines don't intersect
+        return False
     if not (0 <= point[0] <= num_cols):
         return False
     if not (0 <= point[1] <= num_rows):
         return False
     return True
 
-def filter_incorrect_lines(line_group, imshape):
-    # TODO: interate through, find intersections... 
+# Removes lines that shouldn't belong to a group (i.e. intersect with other lines)
+def filter_incorrect_lines(line_group, img_shape):
+    line_set = set(line_group)
+    intersections = {}
+    for i in range(len(line_group)):
+        for j in range(len(line_group)):
+            if i == j:
+                continue
+            if intersection_within_image(line_group[i], line_group[j], img_shape):
+                if line_group[i] in intersections:
+                    intersections[line_group[i]] += 1
+                else:
+                    intersections[line_group[i]] = 1
+    if len(intersections) > 0:
+        # If there is a sole max, remove it
+        max_val = max(intersections.values())
+        maxs = [item for item in intersections if intersections[item] == max_val]
+        if len(maxs) == 1:
+            line_set.remove(max(intersections, key = intersections.get))
+            return filter_incorrect_lines(list(line_set), img_shape)
+        else:
+            # remove all of the max values, average, and then run this again
+            for line in maxs:
+                line_set.remove(line)
+            ave_x_1 = int(np.mean([z[0][0] for z in maxs]))
+            ave_y_1 = int(np.mean([z[0][1] for z in maxs]))
+            ave_x_2 = int(np.mean([z[1][0] for z in maxs]))
+            ave_y_2 = int(np.mean([z[1][1] for z in maxs]))
+            new_line = ((ave_x_1, ave_y_1), (ave_x_2, ave_y_2))
+            line_set.add(new_line)
+            return filter_incorrect_lines(list(line_set), img_shape)
     return line_group
     
 
 # Split the lines into two groups, based on the fact that intersecting lines should
 # not be in the same group. We intermediately use sets to perform set subtraction.
-def get_groups_of_lines(x_y_lines, img_shape):
+def get_groups_of_lines(x_y_lines, img_shape, do_filtering = False):
     group1 = set([x_y_lines[0]])
     group2 = set()
     while len(group1) + len(group2) != len(x_y_lines):
@@ -61,9 +92,9 @@ def get_groups_of_lines(x_y_lines, img_shape):
             group1.add(x)
         for y in addTo2:
             group2.add(y)
-    # Get rid of lines that don't belong
-    group1 = filter_incorrect_lines(list(group1), img_shape)
-    group2 = filter_incorrect_lines(list(group2))
+    if do_filtering:
+        group1 = filter_incorrect_lines(list(group1), img_shape)
+        group2 = filter_incorrect_lines(list(group2), img_shape)
     return list(group1), list(group2)
 
 def get_square(img):
@@ -112,7 +143,7 @@ def get_square(img):
 if __name__ == '__main__':
 
     # Specify the image path and get the color image
-    image_path = '../data/m7/IMG_0295.JPG'
+    image_path = '../data/m7/IMG_0290.JPG'
     color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
     lines = rho_theta_to_x1y1_x2y2(hough_lines(color_img), np.shape(color_img))
     group1, group2 = get_groups_of_lines(lines, np.shape(color_img))
