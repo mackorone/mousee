@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  16 DEC 2014 19:17
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.16)  16 DEC 2014 21:24
 entering extended mode
 **C:/Users/Scott/Google*Drive/School*Docs/CSE/CSE473/final/mousee/final/report/
 report.tex
@@ -249,15 +249,13 @@ File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 4319.
-Package hyperref Info: Option `bookmarks' set `false' on input line 4319.
 Package hyperref Info: Hyper figures OFF on input line 4443.
 Package hyperref Info: Link nesting OFF on input line 4448.
 Package hyperref Info: Hyper index ON on input line 4451.
 Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks OFF on input line 4694.
+Package hyperref Info: Bookmarks ON on input line 4688.
 \c@Hy@tempcnt=\count108
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen120
@@ -340,11 +338,16 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 26.
 LaTeX Info: Redefining \pageref on input line 26.
 LaTeX Info: Redefining \nameref on input line 26.
+
+("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
+report.out")
+("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
+report.out")
+\@outlinefile=\write3
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 37.
 LaTeX Font Info:    Try loading font information for U+msa on input line 37.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 37.
@@ -360,147 +363,269 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 39.
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--64
-[]\OT1/ptm/m/n/10 In or-der to lessen the bur-den of con-struct-ing
- []
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 53.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 57.
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
-<images/mouse_and_maze.jpg, id=3, 1927.2pt x 1084.05pt>
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
+<images/mouse_and_maze.jpg, id=76, 1927.2pt x 1084.05pt>
 File: images/mouse_and_maze.jpg Graphic file (type jpg)
 
 <use images/mouse_and_maze.jpg>
-Package pdftex.def Info: images/mouse_and_maze.jpg used on input line 80.
+Package pdftex.def Info: images/mouse_and_maze.jpg used on input line 77.
 (pdftex.def)             Requested size: 189.70947pt x 106.7076pt.
  [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
  <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/report/
 images/mouse_and_maze.jpg>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 122.
 
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 104.
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 119.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 122.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 119.
 
-<../../src/imgs/one.jpg, id=34, 1156.32pt x 757.83125pt>
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 121.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 133.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 145.
+
+<../../src/imgs/one.jpg, id=104, 1156.32pt x 757.83125pt>
 File: ../../src/imgs/one.jpg Graphic file (type jpg)
 
 <use ../../src/imgs/one.jpg>
-Package pdftex.def Info: ../../src/imgs/one.jpg used on input line 161.
+Package pdftex.def Info: ../../src/imgs/one.jpg used on input line 158.
 (pdftex.def)             Requested size: 189.70947pt x 124.33138pt.
 
-<../../src/imgs/three.jpg, id=35, 1454.43375pt x 877.2775pt>
+<../../src/imgs/three.jpg, id=105, 1454.43375pt x 877.2775pt>
 File: ../../src/imgs/three.jpg Graphic file (type jpg)
 
 <use ../../src/imgs/three.jpg>
-Package pdftex.def Info: ../../src/imgs/three.jpg used on input line 162.
+Package pdftex.def Info: ../../src/imgs/three.jpg used on input line 159.
 (pdftex.def)             Requested size: 189.70947pt x 114.42488pt.
 
-Underfull \hbox (badness 1005) in paragraph at lines 168--175
+Underfull \hbox (badness 1005) in paragraph at lines 165--172
 []\OT1/ptm/m/n/10 After ob-tain-ing a set of stitched im-ages, we be-gin
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--175
+Underfull \hbox (badness 10000) in paragraph at lines 165--172
 
  []
 
-[2] [3 <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/src/img
-s/one.jpg> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/src
-/imgs/three.jpg>] <images/houghlines1.png, id=73, 579.3645pt x 435.42674pt>
+[2]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 220.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 229.
+
+[3 <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/src/imgs/on
+e.jpg> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/src/img
+s/three.jpg>] <images/skeleton.png, id=136, 576.35326pt x 430.0065pt>
+File: images/skeleton.png Graphic file (type png)
+
+<use images/skeleton.png>
+Package pdftex.def Info: images/skeleton.png used on input line 238.
+(pdftex.def)             Requested size: 189.70947pt x 141.53514pt.
+
+<images/houghlines1.png, id=138, 579.3645pt x 435.42674pt>
 File: images/houghlines1.png Graphic file (type png)
 
 <use images/houghlines1.png>
-Package pdftex.def Info: images/houghlines1.png used on input line 239.
+Package pdftex.def Info: images/houghlines1.png used on input line 246.
 (pdftex.def)             Requested size: 189.70947pt x 142.57506pt.
 
-<images/houghlines2.png, id=75, 577.55775pt x 434.8245pt>
+<images/houghlines2.png, id=139, 577.55775pt x 434.8245pt>
 File: images/houghlines2.png Graphic file (type png)
 
 <use images/houghlines2.png>
-Package pdftex.def Info: images/houghlines2.png used on input line 240.
+Package pdftex.def Info: images/houghlines2.png used on input line 247.
 (pdftex.def)             Requested size: 189.70947pt x 142.82239pt.
 
-<images/houghlinesfinal.png, id=76, 576.9555pt x 434.22224pt>
+<images/houghlinesfinal.png, id=140, 576.9555pt x 434.22224pt>
 File: images/houghlinesfinal.png Graphic file (type png)
 
 <use images/houghlinesfinal.png>
-Package pdftex.def Info: images/houghlinesfinal.png used on input line 248.
+Package pdftex.def Info: images/houghlinesfinal.png used on input line 256.
 (pdftex.def)             Requested size: 189.70947pt x 142.77698pt.
- <images/square.png, id=77, 963.6pt x 722.7pt>
-File: images/square.png Graphic file (type png)
 
-<use images/square.png>
-Package pdftex.def Info: images/square.png used on input line 256.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/square.png, id=141, 963.6pt x 722.7pt>
+File: images/square.png Graphic file (type png)
+ <use images/square.png>
+Package pdftex.def Info: images/square.png used on input line 264.
 (pdftex.def)             Requested size: 189.70947pt x 142.2768pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/ortho.png, id=78, 925.4575pt x 956.57375pt>
+<images/ortho.png, id=142, 925.4575pt x 956.57375pt>
 File: images/ortho.png Graphic file (type png)
  <use images/ortho.png>
-Package pdftex.def Info: images/ortho.png used on input line 264.
+Package pdftex.def Info: images/ortho.png used on input line 272.
 (pdftex.def)             Requested size: 189.70947pt x 196.08429pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/final.jpg, id=81, 1140.26pt x 1393.205pt>
+<images/final.jpg, id=145, 1140.26pt x 1393.205pt>
 File: images/final.jpg Graphic file (type jpg)
  <use images/final.jpg>
-Package pdftex.def Info: images/final.jpg used on input line 273.
+Package pdftex.def Info: images/final.jpg used on input line 281.
 (pdftex.def)             Requested size: 189.70947pt x 231.78218pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+<images/Walls.jpg, id=146, 1140.26pt x 1393.205pt>
+File: images/Walls.jpg Graphic file (type jpg)
+ <use images/Walls.jpg>
+Package pdftex.def Info: images/Walls.jpg used on input line 289.
+(pdftex.def)             Requested size: 189.70947pt x 231.78218pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 300.
+
+
+Overfull \hbox (0.99199pt too wide) in paragraph at lines 305--320
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 324.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 327.
+
+
+LaTeX Warning: Text page 4 contains only floats.
+
 [4
 
  <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/report/
-images/houghlines1.png> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/fin
-al/mousee/final/report/images/houghlines2.png> <C:/Users/Scott/Google Drive/Sch
-ool Docs/CSE/CSE473/final/mousee/final/report/images/houghlinesfinal.png> <C:/U
-sers/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/report/images
-/square.png (PNG copy)> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/fin
-al/mousee/final/report/images/ortho.png (PNG copy)>]
-("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
-report.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 330.
- [5
+images/skeleton.png> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/
+mousee/final/report/images/houghlines1.png> <C:/Users/Scott/Google Drive/School
+ Docs/CSE/CSE473/final/mousee/final/report/images/houghlines2.png> <C:/Users/Sc
+ott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/report/images/houghl
+inesfinal.png> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee
+/final/report/images/square.png (PNG copy)> <C:/Users/Scott/Google Drive/School
+ Docs/CSE/CSE473/final/mousee/final/report/images/ortho.png (PNG copy)>]
 
- <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/report/
-images/final.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 330.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 338.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 359.
+
+
+Underfull \vbox (badness 7081) has occurred while \output is active []
+
+ [5 <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/mousee/final/repo
+rt/images/final.jpg> <C:/Users/Scott/Google Drive/School Docs/CSE/CSE473/final/
+mousee/final/report/images/Walls.jpg>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                \kern -10.0pt
+(hyperref)                removed on input line 387.
+
+
+("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
+report.bbl"
+Underfull \hbox (badness 10000) in paragraph at lines 25--26
+[]\OT1/ptm/m/n/9 ``[]$http : / / sites . ieee . org / r1 / les / 2013 / 03 /$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+[]\OT1/ptm/m/n/9 ``[]$http : / / www . jacobsschool . ucsd . edu / student / st
+udent[]involved /$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+$\OT1/ptm/m/n/9 involved[]org / matching[]funds / docs / sample[]proposal2[]11-
+[]12 .$
+ []
+
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 403.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 403.
 
 ("C:\Users\Scott\Google Drive\School Docs\CSE\CSE473\final\mousee\final\report\
 report.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 330.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 330.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 330.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 403.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 403.
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: 4386FE5A621E3AB2191513C804C5DD54;1219.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 403.
  ) 
 Here is how much of TeX's memory you used:
- 6705 strings out of 493705
- 95165 string characters out of 3144569
- 188828 words of memory out of 3000000
- 9864 multiletter control sequences out of 15000+200000
- 28057 words of font info for 67 fonts, out of 3000000 for 9000
+ 6772 strings out of 493705
+ 96479 string characters out of 3144569
+ 188622 words of memory out of 3000000
+ 9914 multiletter control sequences out of 15000+200000
+ 30109 words of font info for 74 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 37i,9n,39p,331b,413s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,9n,39p,342b,413s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8
-a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (5 pages, 7185031 bytes).
+ 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (6 pages, 7584578 bytes).
 PDF statistics:
- 142 PDF objects out of 1000 (max. 8388607)
- 59 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 228 PDF objects out of 1000 (max. 8388607)
+ 65 named destinations out of 1000 (max. 500000)
+ 200 words of extra memory for PDF output out of 10000 (max. 10000000)
 
