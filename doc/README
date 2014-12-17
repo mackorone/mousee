@@ -1,1 +1,10 @@
-<TODO>
+mousee is a suite of Python files that reconstructs MicroMouse wall information
+from a set of perspective images using OpenCV. The main script is called driver.py
+and can be run as follows:
+
+    python src/driver.py data/m7 out.txt
+
+Note: All code was written in Python 2.7
+
+Note: Right now, only data set m7 works. I'll be working to clean things up as
+soon as I can find time.

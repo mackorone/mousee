@@ -148,7 +148,8 @@ def get_square(img):
 if __name__ == '__main__':
 
     # Specify the image path and get the color image
-    image_path = '../data/m7/IMG_0290.JPG'
+    #image_path = '../data/m7/IMG_0290.JPG'
+    image_path = '1.jpg'
     color_img = cv2.imread(image_path, cv2.CV_LOAD_IMAGE_COLOR)
     lines = rho_theta_to_x1y1_x2y2(hough_lines(color_img), np.shape(color_img))
     group1, group2 = get_groups_of_lines(lines, np.shape(color_img))
