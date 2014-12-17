@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{url}
 
 % Include other packages here, before hyperref.
 
@@ -141,7 +142,7 @@ to real-world engineering challenges, by introducing uneven mazes resembling rea
 suggested using information from cameras for low-level control, steering, and navigation, essentially using cameras as
 sensors instead of infrared and ultrasound, two common sensor variations seen in competitive mice.  In the 2011-12
 academic year, a student team from University of California, San Diego adopted this approach for their implementation
-[].  We stress that our implementation differs fundamentally from that in \cite{Chen1997} and [], in that our approach
+\cite{ucsd}.  We stress that our implementation differs fundamentally from that in \cite{Chen1997} and \cite{ucsd}, in that our approach
 employs more "global" information to avoid the costly exploration phase of maze solving.
 
 \section{Algorithm}
@@ -231,8 +232,7 @@ high-level algorithmic development.  Also, the flexibility of Python in comparis
 In this section, we present several images representative of the output of our algorithm at various stages of execution.
 \vfill
 \clearpage
-% \subsubsection{Hough Transform}
-% \label{ssub:hough_transform}
+
 \begin{figure}[h!]
 \begin{center}
 	\includegraphics[width=0.8\linewidth]{images/houghlines1.png}
@@ -280,6 +280,9 @@ square}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\subsection{Performance Analysis} % (fold)
+\label{sub:performance_analysis}
+
 \section{Discussion}
 \label{sec:discussion}
 \subsection{Maze size} % (fold)
@@ -287,14 +290,18 @@ square}
 
 In order to demonstrate the effectiveness of our algorithm on a small test set, we constructed a $4\times 6$-cell maze,
 which is smaller than standard $16\times 16$-cell Micromouse mazes.  Because of the nature of perspective, the red tops
-of maze walls at distance appeared much thinner than those close to the camera at the starting position, meaning that our homography-based technique
-% Note that the images used for development and testing purposes (examples of which are shown in Figure
-% ~\ref{fig:stitched}) are of a $4\times 6$-cell maze, instead of the full-size $16\times 16$.  In order to capture images
-% with enough informat
+of maze walls at distance appeared much thinner than those close to the camera at the starting position, meaning that
+our homography-based technique results in distortion that increases approximately with radial distance from the camera
+position.  Fortunately, Micromouse competition rules impose no restrictions on the height of a competing robot, meaning
+that successfully solve full-size mazes (which are significantly larger than our test cases) would require a camera
+mounted at a higher height.
+
 \subsection{Earlier solution attempts}
 \label{sub:earlierattempts}
 
-Our first attempt at a solution to this problem consisted of using trigonometric information to obtain an orthographic projection 
+Our first attempt at a solution to this problem consisted of using trigonometric information to obtain an orthographic
+projection.  The principle is this: for a given line segment with fixed length in space along the maze floor, the size
+occupied in the image under perspective projection will decrease as the segment moves away from the camera.
 
 \subsection{Difficulties encountered}
 \label{sub:difficulties}
